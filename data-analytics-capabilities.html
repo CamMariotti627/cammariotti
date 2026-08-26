@@ -1,0 +1,681 @@
+<!Doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cam Mariotti — Data Analytics Capabilities</title>
+  <style>
+:root {
+  --bg: #000000;
+  --surface: #232323;
+  --text: #09ab09;
+  --mono: 'Courier New', monospace;
+  --accent: whitesmoke;
+  --muted: #056605;
+  --border: #1a3d1a;
+  --altbg: var(--accent);
+  --alttext: var(--bg);
+  --altaccent: var(--text);
+  --temp: rgb(237, 230, 140);
+}
+
+body {
+  display: flex;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  margin: 0;
+}
+
+body.light-mode {
+  --temp:   #035603;
+  --bg:     var(--altbg);
+  --text:   var(--alttext);
+  --accent: var(--altaccent);
+  --surface: #e0e0e0;
+  --border:  #999999;
+  --muted:   #333333;
+}
+
+nav {
+  width: 200px;
+  min-width: 200px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+}
+
+nav a {
+  display: block;
+  padding: 10px 18px;
+  color: var(--muted);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+}
+
+nav a::before {
+  content: '> ';
+  color: var(--border);
+}
+
+nav a:hover {
+  color: var(--accent);
+  border-left: 3px solid var(--accent);
+}
+
+nav a.active {
+  color: var(--text);
+  border-left: 3px solid var(--text);
+}
+
+main {
+  flex: 1;
+  padding: 0 40px 60px;
+  max-width: 980px;
+}
+
+#top-nav {
+  display: flex;
+  gap: 10px;
+  padding: 12px 20px;
+  margin: 0 -40px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+
+#top-nav button {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+#top-nav button:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+#btn-toggle {
+  margin-left: auto;
+}
+
+h1 {
+  display: inline-block;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 2.4em;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--text);
+  width: 0;
+  animation: typing 1.6s steps(28) forwards, blink 0.7s step-end infinite;
+}
+
+@keyframes typing { from { width: 0; } to { width: 100%; } }
+@keyframes blink { 0%, 100% { border-color: var(--text); } 50% { border-color: transparent; } }
+
+h2, h3 {
+  color: var(--temp);
+  font-family: var(--mono);
+  text-align: left;
+  text-decoration: underline;
+}
+
+p {
+  opacity: 0;
+  animation: fadein 1s ease forwards;
+  animation-delay: 0.3s;
+  color: var(--text);
+  font-family: var(--mono);
+  line-height: 1.5;
+}
+
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+th, td {
+  padding: 10px 16px;
+  border: 2px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  background: var(--surface);
+  color: var(--muted);
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--surface);
+}
+
+td.tag {
+  white-space: nowrap;
+  color: var(--accent);
+}
+
+code, pre {
+  font-family: var(--mono);
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 14px 18px;
+  overflow-x: auto;
+  color: var(--accent);
+  font-size: 0.9em;
+}
+
+.section {
+  margin-bottom: 44px;
+}
+
+ul.capability-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+}
+
+ul.capability-list li {
+  position: relative;
+  padding: 8px 0 8px 24px;
+  color: var(--text);
+  line-height: 1.5;
+  border-bottom: 1px solid var(--border);
+}
+
+ul.capability-list li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+}
+
+.evidence {
+  font-size: 0.85em;
+  color: var(--muted);
+}
+
+a { color: var(--muted); text-decoration: underline; }
+a:hover { color: var(--accent); text-decoration: none; }
+a:visited { color: #FDE992; }
+
+/* ---- Featured project cards (imported from standalone case-study docs) ---- */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+.project-wrap {
+  margin: 0 0 26px;
+}
+
+.cm-card {
+  --ink: whitesmoke;
+  --ink-soft: #6fcf6f;
+  --paper: #1c1c1c;
+  --line: #2c452c;
+  --wash: #223122;
+  --accent2: #1fd11f;
+  --accent2-soft: #163516;
+  --gold: rgb(237, 230, 140);
+  --gold-soft: #3a3620;
+  font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  max-width: 760px;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+}
+
+body.light-mode .cm-card {
+  --ink: #16293a;
+  --ink-soft: #56697a;
+  --paper: #ffffff;
+  --line: #dfe6ec;
+  --wash: #f3f6f9;
+  --accent2: #0e6e5c;
+  --accent2-soft: #e4f2ee;
+  --gold: #a8710f;
+  --gold-soft: #f8eedd;
+  box-shadow: 0 1px 2px rgba(22,41,58,0.04), 0 8px 24px rgba(22,41,58,0.06);
+}
+.cm-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent2);
+  margin: 0 0 6px;
+}
+.cm-head {
+  padding: 26px 28px 20px;
+  border-bottom: 1px solid var(--line);
+}
+.cm-title {
+  font-size: 21px;
+  font-weight: 800;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+  text-align: left;
+  animation: none;
+  border-right: none;
+  width: auto;
+  display: block;
+}
+.cm-sub {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.5;
+  opacity: 1;
+  animation: none;
+  background: transparent;
+}
+.cm-body { padding: 22px 28px 28px; }
+.cm-kpis {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+.cm-kpi {
+  flex: 1 1 140px;
+  background: var(--wash);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.cm-kpi-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-soft);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.cm-kpi-value {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.cm-kpi-value.accent { color: var(--accent2); }
+.cm-kpi-value.gold { color: var(--gold); }
+.cm-section-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin: 0 0 10px;
+  text-align: left;
+  background: transparent;
+  text-decoration: none;
+}
+.cm-card table.cm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 6px;
+  text-align: left;
+}
+.cm-card table.cm-table th {
+  text-align: left;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  font-weight: 700;
+  padding: 8px 10px;
+  border-bottom: 1.5px solid var(--ink);
+  white-space: nowrap;
+  background: transparent;
+}
+.cm-card table.cm-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+  border: 1px solid var(--line);
+  border-left: none;
+  border-right: none;
+  vertical-align: top;
+}
+.cm-card table.cm-table td.num, .cm-card table.cm-table th.num {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  text-align: right;
+  white-space: nowrap;
+}
+.cm-card table.cm-table tr:last-child td { border-bottom: none; }
+.cm-card table.cm-table tr.total td {
+  font-weight: 700;
+  background: var(--wash);
+}
+.cm-card table.cm-table tbody tr:nth-child(even) { background: transparent; }
+.cm-pill {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--accent2-soft);
+  color: var(--accent2);
+}
+.cm-pill.gold { background: var(--gold-soft); color: var(--gold); }
+.cm-note {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+  opacity: 1;
+  animation: none;
+  background: transparent;
+}
+.cm-note b { color: var(--ink); }
+.cm-foot {
+  padding: 14px 28px;
+  background: var(--wash);
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  color: var(--ink-soft);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cm-foot span.tag {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  color: var(--accent2);
+}
+@media (max-width: 480px) {
+  .cm-head, .cm-body { padding-left: 18px; padding-right: 18px; }
+  .cm-kpi { flex: 1 1 100%; }
+}
+  </style>
+  <script src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#btn-toggle').click(function () {
+        $('body').toggleClass('light-mode');
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <a href="/index.html">HOME</a>
+    <a href="data-structures-capabilities.html">DATA STRUCTURES</a>
+    <a href="javascript-capabilities.html">JAVASCRIPT</a>
+    <a href="databases-capabilities.html">DATABASES</a>
+    <a href="#" class="active">DATA ANALYTICS</a>
+    <a href="server-management-capabilities.html">SERVER MANAGEMENT</a>
+    <a href="/Mod1/indexmod1.html">MOD 1</a>
+    <a href="/Mod2/indexmod2.html">MOD 2</a>
+  </nav>
+
+  <main>
+    <div id="top-nav">
+      <button onclick="location.href='/index.html'">Home</button>
+      <button id="btn-toggle">Dark/Light</button>
+    </div>
+
+    <h1>Data Analytics Capabilities</h1>
+
+    <div class="section">
+      <p>
+        Data analyst capable of taking a project from raw, messy data through
+        to a validated, decision-ready model &mdash; moving fluidly between
+        relational databases, spreadsheet-based statistical modeling, and
+        optimization tools, with a working understanding of not just how each
+        technique runs but why it applies to a given problem.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Skills Matrix</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Skill / Tool</th>
+            <th>Demonstrated Capability</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tag">SQL &amp; Relational Databases</td>
+            <td>Query and manage relational databases using DDL/DML statements against normalized, multi-table schemas; build multi-table JOINs, subqueries, and aggregate summaries with GROUP BY, HAVING, ROLLUP, and GROUPING SETS; implement window functions and CTEs for running totals and rolling averages</td>
+          </tr>
+          <tr>
+            <td class="tag">Data Cleaning &amp; ETL (Power Query)</td>
+            <td>Merge, filter, and reshape large, disorganized datasets into analysis-ready tables &mdash; conditional filtering, column restructuring, recoding, and multi-source column merging</td>
+          </tr>
+          <tr>
+            <td class="tag">Statistical Classification</td>
+            <td>Design Naïve Bayes text classifiers &mdash; tokenizing a bag of words, applying Laplace smoothing, and computing MAP probabilities via log-likelihood</td>
+          </tr>
+          <tr>
+            <td class="tag">Unsupervised Learning</td>
+            <td>K-means clustering via Excel Solver &mdash; Euclidean distance matrices, minimum-distance cluster assignment, silhouette-score validation, and translating clusters into segment profiles</td>
+          </tr>
+          <tr>
+            <td class="tag">Network Analysis &amp; Community Detection</td>
+            <td>Model relationships as network graphs using adjacency matrices and cosine similarity, compute node degree, prune into R-neighborhood graphs, and apply modularity maximization with Gephi visualization</td>
+          </tr>
+          <tr>
+            <td class="tag">Regression &amp; Predictive Modeling</td>
+            <td>Linear and logistic regression with dummy-coded categorical variables, validated via R², F-tests, and coefficient t-tests; classification performance via true/false positive/negative outcomes</td>
+          </tr>
+          <tr>
+            <td class="tag">Optimization &amp; Linear Programming</td>
+            <td>Constrained optimization for resource-allocation and supply-blending problems using Excel Solver, SUMPRODUCT objective functions, the simplex method, and evolutionary (nonlinear/integer) solving with binary scenario constraints</td>
+          </tr>
+          <tr>
+            <td class="tag">Data Validation &amp; QA</td>
+            <td>Line-by-line dataset auditing against source baselines to catch discrepancies before analysis</td>
+          </tr>
+          <tr>
+            <td class="tag">Technical Writing</td>
+            <td>Translating statistical and database concepts into clear, structured explanations for technical and non-technical audiences</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Featured Projects</h2>
+      <p>Four worked case studies, each solved end-to-end in Excel with Solver, from raw data to a validated, decision-ready result.</p>
+
+      <div class="project-wrap">
+        <div class="cm-card">
+          <div class="cm-head">
+            <p class="cm-eyebrow">Unsupervised Learning</p>
+            <h2 class="cm-title">K-Means Customer Clustering</h2>
+            <p class="cm-sub">Segmenting a wine distributor's customer base by purchase behavior using Solver-driven Euclidean distance and silhouette validation.</p>
+          </div>
+          <div class="cm-body">
+            <div class="cm-kpis">
+              <div class="cm-kpi"><div class="cm-kpi-label">Customers</div><div class="cm-kpi-value">100</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Clusters (K)</div><div class="cm-kpi-value accent">4</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Purchase Deals</div><div class="cm-kpi-value">32</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Silhouette Score</div><div class="cm-kpi-value accent">0.0049</div></div>
+            </div>
+
+            <p class="cm-section-label">Deal Distribution by Cluster (sample)</p>
+            <table class="cm-table">
+              <thead>
+                <tr><th>Offer</th><th>Varietal</th><th>Origin</th><th class="num">C1</th><th class="num">C2</th><th class="num">C3</th><th class="num">C4</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>#4 — Feb</td><td>Champagne</td><td>France</td><td class="num">10</td><td class="num">0</td><td class="num">1</td><td class="num">1</td></tr>
+                <tr><td>#7 — Mar</td><td>Prosecco</td><td>Australia</td><td class="num">5</td><td class="num">11</td><td class="num">3</td><td class="num">0</td></tr>
+                <tr><td>#8 — Mar</td><td>Espumante</td><td>South Africa</td><td class="num">0</td><td class="num">5</td><td class="num">14</td><td class="num">1</td></tr>
+                <tr><td>#11 — May</td><td>Champagne</td><td>France</td><td class="num">10</td><td class="num">0</td><td class="num">1</td><td class="num">2</td></tr>
+                <tr><td>#13 — May</td><td>Merlot</td><td>Chile</td><td class="num">0</td><td class="num">4</td><td class="num">1</td><td class="num">1</td></tr>
+              </tbody>
+            </table>
+
+            <p class="cm-section-label" style="margin-top:22px;">Cluster Profiles</p>
+            <table class="cm-table">
+              <tbody>
+                <tr><td style="width:90px;"><span class="cm-pill">Cluster 1</span></td><td>All-around, high-volume shoppers — strong values across every category, likely larger households.</td></tr>
+                <tr><td><span class="cm-pill">Cluster 2</span></td><td>Fresh-food focused, lowest frozen &amp; deli spend — profile suggests home cooking / meal prep.</td></tr>
+                <tr><td><span class="cm-pill">Cluster 3</span></td><td>Lowest spend across every item — likely single-person or lower-income households.</td></tr>
+                <tr><td><span class="cm-pill">Cluster 4</span></td><td>Concentrated in fresh groceries — profile suggests scratch cooking or health-conscious buyers.</td></tr>
+              </tbody>
+            </table>
+
+            <p class="cm-note">Cluster assignment minimizes each customer's <b>Euclidean distance</b> to a cluster centroid via Excel Solver. A silhouette score of <b>0.0049</b> (near-zero on this model's scale) indicates tightly-separated, high-confidence clusters.</p>
+          </div>
+          <div class="cm-foot"><span>Data Smart — Ch. 4, K-Means Clustering</span><span class="tag">Excel · Solver</span></div>
+        </div>
+      </div>
+
+      <div class="project-wrap">
+        <div class="cm-card">
+          <div class="cm-head">
+            <p class="cm-eyebrow">Linear Programming</p>
+            <h2 class="cm-title">Cost-Minimizing Blend Optimization</h2>
+            <p class="cm-sub">A multi-supplier orange procurement model built in Solver to hit quality and volume targets at the lowest delivered cost.</p>
+          </div>
+          <div class="cm-body">
+            <div class="cm-kpis">
+              <div class="cm-kpi"><div class="cm-kpi-label">Total Cost (Q1)</div><div class="cm-kpi-value accent">$1,276,088</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Suppliers Used</div><div class="cm-kpi-value">4 / 11</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Monthly Volume</div><div class="cm-kpi-value">600–700k gal</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">4-Supplier Cap</div><div class="cm-kpi-value gold">+$1,417</div></div>
+            </div>
+
+            <p class="cm-section-label">Optimal Sourcing Allocation (1,000 gal)</p>
+            <table class="cm-table">
+              <thead>
+                <tr><th>Supplier</th><th>Region</th><th class="num">Jan</th><th class="num">Feb</th><th class="num">Mar</th><th class="num">Total</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Valencia</td><td>Florida</td><td class="num">240.0</td><td class="num">240.0</td><td class="num">280.0</td><td class="num">760.0</td></tr>
+                <tr><td>Biondo Commune</td><td>Egypt</td><td class="num">187.5</td><td class="num">187.5</td><td class="num">218.8</td><td class="num">593.8</td></tr>
+                <tr><td>Berna</td><td>Spain</td><td class="num">105.0</td><td class="num">105.0</td><td class="num">122.5</td><td class="num">332.5</td></tr>
+                <tr><td>Jincheng</td><td>China</td><td class="num">67.5</td><td class="num">67.5</td><td class="num">78.8</td><td class="num">213.8</td></tr>
+                <tr class="total"><td colspan="2">Total Ordered</td><td class="num">600.0</td><td class="num">600.0</td><td class="num">700.0</td><td class="num">1,900.0</td></tr>
+              </tbody>
+            </table>
+
+            <p class="cm-section-label" style="margin-top:22px;">Cost / Quality Trade-off Frontier</p>
+            <table class="cm-table">
+              <thead><tr><th>Total Cost</th><th class="num">Quality Relaxation</th></tr></thead>
+              <tbody>
+                <tr><td>$1,227,560</td><td class="num">0.0%</td></tr>
+                <tr><td>$1,210,000</td><td class="num">5.4%</td></tr>
+                <tr><td>$1,190,000</td><td class="num">16.6%</td></tr>
+                <tr><td>$1,170,000</td><td class="num">19.9%</td></tr>
+                <tr><td>$1,150,000</td><td class="num">53.7%</td></tr>
+                <tr><td>$1,130,000</td><td class="num">84.5%</td></tr>
+              </tbody>
+            </table>
+
+            <p class="cm-note">Objective minimizes <b>price + shipping</b> subject to monthly volume, quality (Brix/acid, astringency, color), and sales-agreement constraints. Adding a binary constraint capping any month to <b>4 active suppliers</b> — to ease procurement paperwork — raises total cost by only <b>0.11%</b> ($1,277,505 vs. $1,276,088), a favorable trade for operational simplicity.</p>
+          </div>
+          <div class="cm-foot"><span>Data Smart — Ch. 9, Optimization &amp; Blending</span><span class="tag">Excel · Solver</span></div>
+        </div>
+      </div>
+
+      <div class="project-wrap">
+        <div class="cm-card">
+          <div class="cm-head">
+            <p class="cm-eyebrow">Statistical Classification</p>
+            <h2 class="cm-title">Naïve Bayes Text Classifier</h2>
+            <p class="cm-sub">A bag-of-words classifier trained on tweet data to detect brand-relevant mentions using log-likelihood and MAP estimation.</p>
+          </div>
+          <div class="cm-body">
+            <div class="cm-kpis">
+              <div class="cm-kpi"><div class="cm-kpi-label">Test Tweets</div><div class="cm-kpi-value">10</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Classes</div><div class="cm-kpi-value" style="font-size:15px;">Mandrill / Other</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Smoothing</div><div class="cm-kpi-value accent">Laplace (+1)</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Accuracy</div><div class="cm-kpi-value accent">10 / 10</div></div>
+            </div>
+
+            <p class="cm-section-label">Log-Likelihood Scores &amp; Predictions</p>
+            <table class="cm-table">
+              <thead>
+                <tr><th>Tweet ID</th><th class="num">log P(Mandrill)</th><th class="num">log P(Other)</th><th>Predicted Class</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td class="num">-66.21</td><td class="num">-79.58</td><td><span class="cm-pill">Mandrill</span></td></tr>
+                <tr><td>2</td><td class="num">-80.83</td><td class="num">-100.35</td><td><span class="cm-pill">Mandrill</span></td></tr>
+                <tr><td>3</td><td class="num">-44.88</td><td class="num">-48.37</td><td><span class="cm-pill">Mandrill</span></td></tr>
+                <tr><td>4</td><td class="num">-110.19</td><td class="num">-124.99</td><td><span class="cm-pill">Mandrill</span></td></tr>
+                <tr><td>7</td><td class="num">-51.30</td><td class="num">-52.48</td><td><span class="cm-pill">Mandrill</span></td></tr>
+                <tr><td>8</td><td class="num">-33.72</td><td class="num">-33.76</td><td><span class="cm-pill">Mandrill</span></td></tr>
+              </tbody>
+            </table>
+
+            <p class="cm-section-label" style="margin-top:22px;">Validation Check (Aggregate by Known Class)</p>
+            <table class="cm-table">
+              <thead><tr><th>Known Source</th><th class="num">log P(Mandrill)</th><th class="num">log P(Other)</th><th>Predicted</th></tr></thead>
+              <tbody>
+                <tr><td>About Mandrill App corpus</td><td class="num">-683.23</td><td class="num">-770.67</td><td><span class="cm-pill">Correct ✓</span></td></tr>
+                <tr><td>About Other corpus</td><td class="num">-570.77</td><td class="num">-523.94</td><td><span class="cm-pill gold">Correct ✓</span></td></tr>
+              </tbody>
+            </table>
+
+            <p class="cm-note">Each tweet is tokenized into a <b>bag of words</b>, scored against per-class word-frequency models with <b>add-one smoothing</b> to prevent floating-point underflow on rare terms, then classified by the class with the higher (less negative) log-likelihood — a direct implementation of <b>Maximum a Posteriori</b> (MAP) estimation.</p>
+          </div>
+          <div class="cm-foot"><span>Data Smart — Ch. 3, Naïve Bayes</span><span class="tag">Excel · X-LOOKUP</span></div>
+        </div>
+      </div>
+
+      <div class="project-wrap">
+        <div class="cm-card">
+          <div class="cm-head">
+            <p class="cm-eyebrow">Optimization Modeling</p>
+            <h2 class="cm-title">Linear vs. Nonlinear Solver Comparison</h2>
+            <p class="cm-sub">The classic "guns and butter" resource-allocation problem, solved first as a linear program, then re-solved with a nonlinear volume bonus.</p>
+          </div>
+          <div class="cm-body">
+            <div class="cm-kpis">
+              <div class="cm-kpi"><div class="cm-kpi-label">Linear Revenue</div><div class="cm-kpi-value">$2,580</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Nonlinear Revenue</div><div class="cm-kpi-value accent">$3,020</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Revenue Lift</div><div class="cm-kpi-value gold">+17.1%</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Solver Method</div><div class="cm-kpi-value" style="font-size:14px;">Simplex → Evolutionary</div></div>
+            </div>
+
+            <p class="cm-section-label">Solution Comparison</p>
+            <table class="cm-table">
+              <thead>
+                <tr><th>Model</th><th class="num">Guns</th><th class="num">Butter (tons)</th><th class="num">Storage Used / Limit</th><th class="num">Budget Used / Limit</th><th class="num">Revenue</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>Linear (Simplex)</td><td class="num">4</td><td class="num">12</td><td class="num">20.0 / 21</td><td class="num">$1,800 / $1,800</td><td class="num">$2,580</td></tr>
+                <tr><td>Nonlinear (Evolutionary)</td><td class="num">6</td><td class="num">9</td><td class="num">16.5 / 21</td><td class="num">$1,800 / $1,800</td><td class="num">$3,020</td></tr>
+              </tbody>
+            </table>
+
+            <p class="cm-note">Both models share the same budget ($1,800) and storage constraint (21 units), unit prices ($150 guns / $100 butter), and per-unit revenue ($195 / $150). The nonlinear model adds a <b>volume bonus for selling 5+ guns</b>, breaking linearity — the <b>Simplex method</b> solves the linear case exactly by checking only polytope corner points, while the nonlinear case requires an <b>evolutionary solver</b> to search for the global optimum, with results constrained to integer units since fractional guns or butter tons aren't sellable.</p>
+          </div>
+          <div class="cm-foot"><span>Data Smart — Ch. 9, Linear Programming</span><span class="tag">Excel · Solver</span></div>
+        </div>
+      </div>
+    </div>
+
+    <p><a href="/index.html">&larr; Back to Home</a></p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,379 @@
+<!Doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cam Mariotti — JavaScript Capabilities</title>
+  <style>
+:root {
+  --bg: #000000;
+  --surface: #232323;
+  --text: #09ab09;
+  --mono: 'Courier New', monospace;
+  --accent: whitesmoke;
+  --muted: #056605;
+  --border: #1a3d1a;
+  --altbg: var(--accent);
+  --alttext: var(--bg);
+  --altaccent: var(--text);
+  --temp: rgb(237, 230, 140);
+}
+
+body {
+  display: flex;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  margin: 0;
+}
+
+body.light-mode {
+  --temp:   #035603;
+  --bg:     var(--altbg);
+  --text:   var(--alttext);
+  --accent: var(--altaccent);
+  --surface: #e0e0e0;
+  --border:  #999999;
+  --muted:   #333333;
+}
+
+nav {
+  width: 200px;
+  min-width: 200px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+}
+
+nav a {
+  display: block;
+  padding: 10px 18px;
+  color: var(--muted);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+}
+
+nav a::before {
+  content: '> ';
+  color: var(--border);
+}
+
+nav a:hover {
+  color: var(--accent);
+  border-left: 3px solid var(--accent);
+}
+
+nav a.active {
+  color: var(--text);
+  border-left: 3px solid var(--text);
+}
+
+main {
+  flex: 1;
+  padding: 0 40px 60px;
+  max-width: 980px;
+}
+
+#top-nav {
+  display: flex;
+  gap: 10px;
+  padding: 12px 20px;
+  margin: 0 -40px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+
+#top-nav button {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+#top-nav button:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+#btn-toggle {
+  margin-left: auto;
+}
+
+h1 {
+  display: inline-block;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 2.4em;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--text);
+  width: 0;
+  animation: typing 1.6s steps(28) forwards, blink 0.7s step-end infinite;
+}
+
+@keyframes typing { from { width: 0; } to { width: 100%; } }
+@keyframes blink { 0%, 100% { border-color: var(--text); } 50% { border-color: transparent; } }
+
+h2, h3 {
+  color: var(--temp);
+  font-family: var(--mono);
+  text-align: left;
+  text-decoration: underline;
+}
+
+p {
+  opacity: 0;
+  animation: fadein 1s ease forwards;
+  animation-delay: 0.3s;
+  color: var(--text);
+  font-family: var(--mono);
+  line-height: 1.5;
+}
+
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+th, td {
+  padding: 10px 16px;
+  border: 2px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  background: var(--surface);
+  color: var(--muted);
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--surface);
+}
+
+td.tag {
+  white-space: nowrap;
+  color: var(--accent);
+}
+
+code, pre {
+  font-family: var(--mono);
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 14px 18px;
+  overflow-x: auto;
+  color: var(--accent);
+  font-size: 0.9em;
+}
+
+.section {
+  margin-bottom: 44px;
+}
+
+.evidence {
+  font-size: 0.85em;
+  color: var(--muted);
+}
+
+a { color: var(--muted); text-decoration: underline; }
+a:hover { color: var(--accent); text-decoration: none; }
+a:visited { color: #FDE992; }
+  </style>
+  <script src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#btn-toggle').click(function () {
+        $('body').toggleClass('light-mode');
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <a href="/index.html">HOME</a>
+    <a href="data-structures-capabilities.html">DATA STRUCTURES</a>
+    <a href="#" class="active">JAVASCRIPT</a>
+    <a href="databases-capabilities.html">DATABASES</a>
+    <a href="data-analytics-capabilities.html">DATA ANALYTICS</a>
+    <a href="server-management-capabilities.html">SERVER MANAGEMENT</a>
+    <a href="/Mod1/indexmod1.html">MOD 1</a>
+    <a href="/Mod2/indexmod2.html">MOD 2</a>
+  </nav>
+
+  <main>
+    <div id="top-nav">
+      <button onclick="location.href='/index.html'">Home</button>
+      <button id="btn-toggle">Dark/Light</button>
+    </div>
+
+    <h1>JavaScript Capabilities</h1>
+
+    <div class="section">
+      <p>
+        A summary of core JavaScript competencies &mdash; from language fundamentals
+        through DOM manipulation, browser APIs, and form validation &mdash; backed by
+        working code for each area.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Skills Matrix</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Capability Area</th>
+            <th>Demonstrated Skills</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tag">Core Language</td>
+            <td>Variables, data types, type coercion, operators (arithmetic, modulo, increment/decrement), operator precedence</td>
+          </tr>
+          <tr>
+            <td class="tag">Control Flow</td>
+            <td>If/else branching, switch statements, for / while / do-while loops</td>
+          </tr>
+          <tr>
+            <td class="tag">Functions</td>
+            <td>Function declarations, parameters &amp; default values, return values, reusable logic across multiple implementations of the same algorithm</td>
+          </tr>
+          <tr>
+            <td class="tag">Arrays &amp; Strings</td>
+            <td>Array iteration &amp; transformation, string methods (slice, indexOf/lastIndexOf, split/reverse/join), case formatting</td>
+          </tr>
+          <tr>
+            <td class="tag">DOM &amp; Events</td>
+            <td>getElementById reads/writes, inline &amp; programmatic event binding, focus/blur/click/mouseover handling, dynamic style updates</td>
+          </tr>
+          <tr>
+            <td class="tag">Browser &amp; Native APIs</td>
+            <td>Date &amp; Math objects, navigator (userAgent, platform, cookieEnabled), window.open/close, browser history, cookies</td>
+          </tr>
+          <tr>
+            <td class="tag">Validation &amp; Error Handling</td>
+            <td>Input format validation (multi-condition checks), structured status/error reporting, defensive conditional logic</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Selected Evidence</h2>
+
+      <h3>Type coercion awareness</h3>
+      <pre>var stringVal = "10";
+var numberVal = 99;
+console.log(stringVal + numberVal); // "1099" — + concatenates when either side is a string</pre>
+      <p class="evidence">Understands JavaScript's dynamic typing and how it affects operator behavior.</p>
+
+      <h3>Switch-based lookup</h3>
+      <pre>switch (thisMonth) {
+  case 0: console.log("January"); break;
+  case 1: console.log("February"); break;
+  // ...
+}</pre>
+      <p class="evidence">Clean multi-branch logic driven by a live Date value rather than hardcoded input.</p>
+
+      <h3>Multiple loop strategies, same result</h3>
+      <pre>function factorialWhile(n) {
+  var total = 1, i = 1;
+  while (i <= n) { total *= i; i++; }
+  return total;
+}</pre>
+      <p class="evidence">Same algorithm implemented with for, while, and do-while loops to show command of each control structure.</p>
+
+      <h3>Array transformation</h3>
+      <pre>function everyOtherElement(arr) {
+  var result = [];
+  for (var i = 0; i < arr.length; i++) {
+    if (i % 2 === 1) result.push(arr[i]);
+  }
+  return result;
+}</pre>
+      <p class="evidence">Builds a new array from a source array using index-based filtering logic.</p>
+
+      <h3>String parsing &amp; substring replacement</h3>
+      <pre>var idx = sentence.indexOf("dart");
+var updated = sentence.slice(0, idx) + "arrow" + sentence.slice(idx + 4);</pre>
+      <p class="evidence">Locates and replaces a substring without relying on a built-in replace method.</p>
+
+      <h3>DOM manipulation &amp; live unit conversion</h3>
+      <pre>function fahrenheitToCelsius() {
+  var f = parseFloat(document.getElementById("fahrenheit").value);
+  var c = (f - 32) * 5 / 9;
+  document.getElementById("celsius").value = c.toFixed(1);
+}</pre>
+      <p class="evidence">Reads live input, performs a computed conversion, writes the result back to the DOM.</p>
+
+      <h3>Browser &amp; environment inspection</h3>
+      <pre>function browserInfo() {
+  var browser = navigator.appName;
+  var os = navigator.platform;
+  var cookiesEnabled = navigator.cookieEnabled;
+  alert(browser + " on " + os + ", cookies enabled: " + cookiesEnabled);
+}</pre>
+      <p class="evidence">Reads directly from the browser's native navigator API to report environment details.</p>
+
+      <h3>Window &amp; history control</h3>
+      <pre>function openSpecialWindow() {
+  window.open("", "", "toolbar=yes,location=yes,menubar=yes,scrollbars=yes,width=400,height=400");
+}
+function showHistory() {
+  alert("You have " + history.length + " URLs in your history.");
+}</pre>
+      <p class="evidence">Manages browser windows with custom features and reads session navigation history.</p>
+
+      <h3>Cookie handling</h3>
+      <pre>function setSessionCookie() {
+  document.cookie = "username=cleah; expires=Fri, 31 Dec 2026 23:59:59 GMT; path=/";
+}
+function getSessionCookie() {
+  document.getElementById("cookieOutput").innerHTML = "Cookie: " + document.cookie;
+}</pre>
+      <p class="evidence">Writes and reads persistent client-side state via the Document API.</p>
+
+      <h3>Form validation with layered checks</h3>
+      <pre>if (ssn.length !== 11) {
+  statusDiv.textContent = "Invalid length.";
+} else if (ssn[3] !== "-" || ssn[6] !== "-") {
+  statusDiv.textContent = "Invalid format.";
+} else {
+  // confirm remaining characters are numeric, then report success
+}</pre>
+      <p class="evidence">Multi-stage validation with clear, user-facing feedback at each failure point.</p>
+
+      <h3>Programmatic event binding without touching HTML</h3>
+      <pre>window.onload = function () {
+  var field = document.getElementById("SSNField");
+  field.onfocus = function () { this.style.background = "#cce5ff"; };
+  field.onblur  = function () { this.style.background = "#ffffff"; };
+};</pre>
+      <p class="evidence">Event handlers attached entirely in JavaScript, keeping markup and behavior separate.</p>
+
+      <h3>Date-based calculation</h3>
+      <pre>var birthdate = new Date(year, month - 1, day);
+var ageInDays = Math.floor((new Date() - birthdate) / (1000 * 60 * 60 * 24));</pre>
+      <p class="evidence">Performs date arithmetic by converting date objects to milliseconds for precise calculations.</p>
+    </div>
+
+    <p><a href="/index.html">&larr; Back to Home</a></p>
+  </main>
+</body>
+</html>

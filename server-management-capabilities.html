@@ -1,0 +1,621 @@
+<!Doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cam Mariotti — Server Management Capabilities</title>
+  <style>
+:root {
+  --bg: #000000;
+  --surface: #232323;
+  --text: #09ab09;
+  --mono: 'Courier New', monospace;
+  --accent: whitesmoke;
+  --muted: #056605;
+  --border: #1a3d1a;
+  --altbg: var(--accent);
+  --alttext: var(--bg);
+  --altaccent: var(--text);
+  --temp: rgb(237, 230, 140);
+}
+
+body {
+  display: flex;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  margin: 0;
+}
+
+body.light-mode {
+  --temp:   #035603;
+  --bg:     var(--altbg);
+  --text:   var(--alttext);
+  --accent: var(--altaccent);
+  --surface: #e0e0e0;
+  --border:  #999999;
+  --muted:   #333333;
+}
+
+nav {
+  width: 200px;
+  min-width: 200px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+}
+
+nav a {
+  display: block;
+  padding: 10px 18px;
+  color: var(--muted);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+}
+
+nav a::before {
+  content: '> ';
+  color: var(--border);
+}
+
+nav a:hover {
+  color: var(--accent);
+  border-left: 3px solid var(--accent);
+}
+
+nav a.active {
+  color: var(--text);
+  border-left: 3px solid var(--text);
+}
+
+main {
+  flex: 1;
+  padding: 0 40px 60px;
+  max-width: 980px;
+}
+
+#top-nav {
+  display: flex;
+  gap: 10px;
+  padding: 12px 20px;
+  margin: 0 -40px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+
+#top-nav button {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+#top-nav button:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+#btn-toggle {
+  margin-left: auto;
+}
+
+h1 {
+  display: inline-block;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 2.4em;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--text);
+  width: 0;
+  animation: typing 1.6s steps(28) forwards, blink 0.7s step-end infinite;
+}
+
+@keyframes typing { from { width: 0; } to { width: 100%; } }
+@keyframes blink { 0%, 100% { border-color: var(--text); } 50% { border-color: transparent; } }
+
+h2, h3 {
+  color: var(--temp);
+  font-family: var(--mono);
+  text-align: left;
+  text-decoration: underline;
+}
+
+p {
+  opacity: 0;
+  animation: fadein 1s ease forwards;
+  animation-delay: 0.3s;
+  color: var(--text);
+  font-family: var(--mono);
+  line-height: 1.5;
+}
+
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+th, td {
+  padding: 10px 16px;
+  border: 2px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  background: var(--surface);
+  color: var(--muted);
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--surface);
+}
+
+td.tag {
+  white-space: nowrap;
+  color: var(--accent);
+}
+
+code, pre {
+  font-family: var(--mono);
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 14px 18px;
+  overflow-x: auto;
+  color: var(--accent);
+  font-size: 0.9em;
+}
+
+.section {
+  margin-bottom: 44px;
+}
+
+ul.capability-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+}
+
+ul.capability-list li {
+  position: relative;
+  padding: 8px 0 8px 24px;
+  color: var(--text);
+  line-height: 1.5;
+  border-bottom: 1px solid var(--border);
+}
+
+ul.capability-list li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+}
+
+.evidence {
+  font-size: 0.85em;
+  color: var(--muted);
+}
+
+a { color: var(--muted); text-decoration: underline; }
+a:hover { color: var(--accent); text-decoration: none; }
+a:visited { color: #FDE992; }
+
+/* ---- Featured project cards (imported from standalone case-study docs) ---- */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+.project-wrap {
+  margin: 0 0 26px;
+}
+
+.cm-card {
+  --ink: whitesmoke;
+  --ink-soft: #6fcf6f;
+  --paper: #1c1c1c;
+  --line: #2c452c;
+  --wash: #223122;
+  --accent2: #1fd11f;
+  --accent2-soft: #163516;
+  --gold: rgb(237, 230, 140);
+  --gold-soft: #3a3620;
+  font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  max-width: 760px;
+  margin: 0 auto;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+}
+
+body.light-mode .cm-card {
+  --ink: #16293a;
+  --ink-soft: #56697a;
+  --paper: #ffffff;
+  --line: #dfe6ec;
+  --wash: #f3f6f9;
+  --accent2: #0e6e5c;
+  --accent2-soft: #e4f2ee;
+  --gold: #a8710f;
+  --gold-soft: #f8eedd;
+  box-shadow: 0 1px 2px rgba(22,41,58,0.04), 0 8px 24px rgba(22,41,58,0.06);
+}
+.cm-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.11em;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent2);
+  margin: 0 0 6px;
+}
+.cm-head {
+  padding: 26px 28px 20px;
+  border-bottom: 1px solid var(--line);
+}
+.cm-title {
+  font-size: 21px;
+  font-weight: 800;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-decoration: none;
+  text-align: left;
+  animation: none;
+  border-right: none;
+  width: auto;
+  display: block;
+}
+.cm-sub {
+  font-size: 13.5px;
+  color: var(--ink-soft);
+  margin: 0;
+  line-height: 1.5;
+  opacity: 1;
+  animation: none;
+  background: transparent;
+}
+.cm-body { padding: 22px 28px 28px; }
+.cm-kpis {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 22px;
+}
+.cm-kpi {
+  flex: 1 1 140px;
+  background: var(--wash);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+.cm-kpi-label {
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ink-soft);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.cm-kpi-value {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.cm-kpi-value.accent { color: var(--accent2); }
+.cm-kpi-value.gold { color: var(--gold); }
+.cm-section-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin: 0 0 10px;
+  text-align: left;
+  background: transparent;
+  text-decoration: none;
+}
+.cm-card table.cm-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 6px;
+  text-align: left;
+}
+.cm-card table.cm-table th {
+  text-align: left;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  font-weight: 700;
+  padding: 8px 10px;
+  border-bottom: 1.5px solid var(--ink);
+  white-space: nowrap;
+  background: transparent;
+}
+.cm-card table.cm-table td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--line);
+  border: 1px solid var(--line);
+  border-left: none;
+  border-right: none;
+  vertical-align: top;
+}
+.cm-card table.cm-table td.num, .cm-card table.cm-table th.num {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  text-align: right;
+  white-space: nowrap;
+}
+.cm-card table.cm-table tr:last-child td { border-bottom: none; }
+.cm-card table.cm-table tr.total td {
+  font-weight: 700;
+  background: var(--wash);
+}
+.cm-card table.cm-table tbody tr:nth-child(even) { background: transparent; }
+.cm-pill {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: var(--accent2-soft);
+  color: var(--accent2);
+}
+.cm-pill.gold { background: var(--gold-soft); color: var(--gold); }
+.cm-note {
+  font-size: 12.5px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--line);
+  opacity: 1;
+  animation: none;
+  background: transparent;
+}
+.cm-note b { color: var(--ink); }
+.cm-foot {
+  padding: 14px 28px;
+  background: var(--wash);
+  border-top: 1px solid var(--line);
+  font-size: 11px;
+  color: var(--ink-soft);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cm-foot span.tag {
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  color: var(--accent2);
+}
+@media (max-width: 480px) {
+  .cm-head, .cm-body { padding-left: 18px; padding-right: 18px; }
+  .cm-kpi { flex: 1 1 100%; }
+}
+
+.cm-card .cm-codeblock {
+  background: #0f2029;
+  color: #d7e6ee;
+  font-family: 'IBM Plex Mono', ui-monospace, monospace;
+  font-size: 12.5px;
+  line-height: 1.7;
+  padding: 16px 18px;
+  border-radius: 10px;
+  overflow-x: auto;
+  white-space: pre;
+  margin: 0 0 6px;
+}
+.cm-card .cm-codeblock .cmt { color: #7fa8b8; }
+.cm-card .cm-codeblock .kw { color: #7fd0a0; }
+.cm-card .cm-codeblock .str { color: #e8c07d; }
+  </style>
+  <script src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#btn-toggle').click(function () {
+        $('body').toggleClass('light-mode');
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <a href="/index.html">HOME</a>
+    <a href="data-structures-capabilities.html">DATA STRUCTURES</a>
+    <a href="javascript-capabilities.html">JAVASCRIPT</a>
+    <a href="databases-capabilities.html">DATABASES</a>
+    <a href="data-analytics-capabilities.html">DATA ANALYTICS</a>
+    <a href="#" class="active">SERVER MANAGEMENT</a>
+    <a href="/Mod1/indexmod1.html">MOD 1</a>
+    <a href="/Mod2/indexmod2.html">MOD 2</a>
+  </nav>
+
+  <main>
+    <div id="top-nav">
+      <button onclick="location.href='/index.html'">Home</button>
+      <button id="btn-toggle">Dark/Light</button>
+    </div>
+
+    <h1>Server Management Capabilities</h1>
+
+    <div class="section">
+      <p>
+        Systems-administration foundation built hands-on in a Unix-like server
+        environment (FreeBSD) inside a virtualized lab &mdash; provisioning a
+        server from bare virtual hardware through to a configured,
+        network-reachable, access-controlled system: installing the OS,
+        managing users and packages, scheduling and monitoring logs,
+        configuring storage redundancy and backups, writing firewall rules,
+        and automating tasks with shell scripts.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Skills Matrix</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Capability Area</th>
+            <th>Demonstrated Skills</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tag">Virtualization &amp; OS Provisioning</td>
+            <td>Provisioning VMs in Oracle VirtualBox (memory, virtual disk type, network adapter mode); installing and configuring FreeBSD from ISO media including disk partitioning, filesystem, hostname, and initial account setup; tuning virtual hardware to resolve installer instability</td>
+          </tr>
+          <tr>
+            <td class="tag">Networking &amp; System Configuration</td>
+            <td>Configuring static network interfaces, subnet masks, default gateways, and DNS resolvers; diagnosing connectivity and DNS-resolution issues; understanding NAT vs. bridged networking for a LAN-connected server</td>
+          </tr>
+          <tr>
+            <td class="tag">Package &amp; System Management</td>
+            <td>Managing installed software via FreeBSD's pkg manager across multiple user contexts; evaluating server software ecosystems across Windows, Linux, and FreeBSD; working in single-user and multi-user boot modes for maintenance and recovery</td>
+          </tr>
+          <tr>
+            <td class="tag">Command-Line &amp; Text Editors</td>
+            <td>Administering a system entirely from the command line, including user account management (pw adduser), permissions, and file operations; editing configuration and script files with both vi and ee</td>
+          </tr>
+          <tr>
+            <td class="tag">Logging, Monitoring &amp; Scheduling</td>
+            <td>Creating and scheduling recurring log jobs; evaluating log-monitoring tools (logcheck, iostat, netstat, iftop, vmstat, Zabbix, Nagios, Prometheus); interpreting FreeBSD log conventions, including silent success as an expected outcome</td>
+          </tr>
+          <tr>
+            <td class="tag">Storage, RAID &amp; Backup Strategy</td>
+            <td>Explaining RAID and redundancy concepts in technical and plain-language terms; performing incremental backups with rsync; creating and managing disk partitions</td>
+          </tr>
+          <tr>
+            <td class="tag">Firewall Configuration &amp; Network Security</td>
+            <td>Configuring a host-based firewall (pf) from default-deny, writing and debugging protocol- and direction-specific rules; diagnosing self-inflicted lockouts and exempting the loopback interface; setting up FreeBSD jails</td>
+          </tr>
+          <tr>
+            <td class="tag">Shell Scripting &amp; Automation</td>
+            <td>Writing shell scripts with variables, conditionals, and control flow; applying prior programming/SQL logic to a new syntax; working with flag-based command syntax across directories and user contexts</td>
+          </tr>
+          <tr>
+            <td class="tag">Troubleshooting &amp; Systems Thinking</td>
+            <td>Structured troubleshooting by isolating variables (user context, directories, settings) to diagnose ambiguous system errors; building independent, transferable understanding of unfamiliar tooling</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Featured Projects</h2>
+      <p>Two worked case studies from hands-on FreeBSD server administration &mdash; from a silent firewall lockout to a working, debugged ruleset, and from familiar programming logic to shell scripting.</p>
+
+      <div class="project-wrap">
+        <div class="cm-card">
+          <div class="cm-head">
+            <p class="cm-eyebrow">Systems Administration</p>
+            <h2 class="cm-title">Host-Based Firewall Configuration (pf)</h2>
+            <p class="cm-sub">Debugging a default-deny FreeBSD packet filter — from a silent lockout to working, protocol-specific rules.</p>
+          </div>
+          <div class="cm-body">
+            <div class="cm-kpis">
+              <div class="cm-kpi"><div class="cm-kpi-label">Default Policy</div><div class="cm-kpi-value">Block All</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Root Causes Found</div><div class="cm-kpi-value accent">2</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Key Fix</div><div class="cm-kpi-value" style="font-size:14px;">skip on lo0</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Platform</div><div class="cm-kpi-value">FreeBSD pf</div></div>
+            </div>
+
+            <p class="cm-section-label">Ruleset Evolution: Before → After</p>
+            <table class="cm-table">
+              <thead><tr><th>Rule Intent</th><th>Before (broken)</th><th>After (fixed)</th></tr></thead>
+              <tbody>
+                <tr><td>Allow inbound TCP</td><td><span class="cm-pill gold">pass in proto tcp</span></td><td><span class="cm-pill">pass in quick proto tcp</span></td></tr>
+                <tr><td>Loopback interface</td><td>Not exempted — blocked by default</td><td><span class="cm-pill">set skip on lo0</span></td></tr>
+                <tr><td>Result</td><td>Localhost tests failed with no error output</td><td>Local &amp; network traffic pass as intended</td></tr>
+              </tbody>
+            </table>
+
+            <p class="cm-section-label" style="margin-top:22px;">Representative Ruleset</p>
+            <div class="cm-codeblock"><span class="cmt"># Default posture: deny everything, then allow explicitly</span>
+block in log all
+block out log all
+
+<span class="cmt"># Exempt loopback so local services can still reach each other</span>
+<span class="kw">set skip on lo0</span>
+
+<span class="cmt"># "quick" stops rule evaluation at the first match —</span>
+<span class="cmt"># without it, traffic falls through to the default block above</span>
+pass out <span class="kw">quick</span> on em0 proto tcp from any to any keep state
+pass in  <span class="kw">quick</span> on em0 proto tcp to port { 22, 80 } keep state
+pass in  <span class="kw">quick</span> on em0 proto icmp icmp-type echoreq keep state</div>
+            <p class="cm-sub" style="font-size:11.5px; margin-top:2px;">Illustrative ruleset reconstructed from the module's documented debugging process — not the literal submitted file.</p>
+
+            <p class="cm-note">The fix was two-fold: adding <b>quick</b> so the first matching rule short-circuits evaluation instead of silently falling through to the default block, and exempting the <b>loopback interface (lo0)</b> so local services kept working once the default-deny policy took effect. Also configured <b>FreeBSD jails</b> for isolated service environments as part of the same module.</p>
+          </div>
+          <div class="cm-foot"><span>Server Management — Firewalls &amp; Jails</span><span class="tag">FreeBSD · pf</span></div>
+        </div>
+      </div>
+
+      <div class="project-wrap">
+        <div class="cm-card">
+          <div class="cm-head">
+            <p class="cm-eyebrow">Systems Administration</p>
+            <h2 class="cm-title">Shell Scripting &amp; Conditional Automation</h2>
+            <p class="cm-sub">Mapping familiar programming logic — conditionals, flags, output — onto FreeBSD shell syntax to build a working script.</p>
+          </div>
+          <div class="cm-body">
+            <div class="cm-kpis">
+              <div class="cm-kpi"><div class="cm-kpi-label">Control Structure</div><div class="cm-kpi-value">if / then</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Familiar Analogs</div><div class="cm-kpi-value accent">JS · SQL</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Output Method</div><div class="cm-kpi-value" style="font-size:15px;">echo "alert"</div></div>
+              <div class="cm-kpi"><div class="cm-kpi-label">Shell</div><div class="cm-kpi-value">FreeBSD sh</div></div>
+            </div>
+
+            <p class="cm-section-label">Cross-Language Concept Mapping</p>
+            <table class="cm-table">
+              <thead><tr><th>Shell</th><th>Familiar Analog</th><th>Concept</th></tr></thead>
+              <tbody>
+                <tr><td><span class="cm-pill">if / then / fi</span></td><td>if / else if (JavaScript)</td><td>Conditional branching</td></tr>
+                <tr><td><span class="cm-pill">-l flag</span></td><td>verbose / table output</td><td>Listing &amp; visual reference</td></tr>
+                <tr><td><span class="cm-pill">echo "..."</span></td><td>console.log() / PRINT</td><td>User-facing output</td></tr>
+                <tr><td><span class="cm-pill">#</span></td><td>// comment</td><td>Inline documentation</td></tr>
+                <tr><td><span class="cm-pill">$variable</span></td><td>let variable</td><td>Variable reference</td></tr>
+              </tbody>
+            </table>
+
+            <p class="cm-section-label" style="margin-top:22px;">Representative Script Structure</p>
+            <div class="cm-codeblock"><span class="cmt">#!/bin/sh</span>
+
+<span class="cmt"># Check whether a target file exists before acting on it</span>
+<span class="kw">if</span> [ -e <span class="str">"$1"</span> ]; <span class="kw">then</span>
+    echo <span class="str">"alert: file found, proceeding"</span>
+    ls -l <span class="str">"$1"</span>
+<span class="kw">else</span>
+    echo <span class="str">"alert: file not found -- check the path"</span>
+    exit 1
+<span class="kw">fi</span></div>
+            <p class="cm-sub" style="font-size:11.5px; margin-top:2px;">Illustrative script reconstructed from the module's documented logic — not the literal submitted file.</p>
+
+            <p class="cm-note">The <b>if/then</b> structure mirrors conditional logic already familiar from SQL and JavaScript coursework, but shell's abbreviated, string-based flags (<b>-l</b>, <b>-d</b>) required building new mental shortcuts rather than relying on full-word intuition — along with a clearer mental model of current location and file paths across multi-user sessions.</p>
+          </div>
+          <div class="cm-foot"><span>Server Management — Shell Scripting</span><span class="tag">FreeBSD sh · Automation</span></div>
+        </div>
+      </div>
+    </div>
+
+    <p><a href="/index.html">&larr; Back to Home</a></p>
+  </main>
+</body>
+</html>

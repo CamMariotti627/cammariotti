@@ -1,0 +1,496 @@
+<!Doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cam Mariotti — Data Structures Capabilities</title>
+  <style>
+:root {
+  --bg: #000000;
+  --surface: #232323;
+  --text: #09ab09;
+  --mono: 'Courier New', monospace;
+  --accent: whitesmoke;
+  --muted: #056605;
+  --border: #1a3d1a;
+  --altbg: var(--accent);
+  --alttext: var(--bg);
+  --altaccent: var(--text);
+  --temp: rgb(237, 230, 140);
+}
+
+body {
+  display: flex;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  margin: 0;
+}
+
+body.light-mode {
+  --temp:   #035603;
+  --bg:     var(--altbg);
+  --text:   var(--alttext);
+  --accent: var(--altaccent);
+  --surface: #e0e0e0;
+  --border:  #999999;
+  --muted:   #333333;
+}
+
+nav {
+  width: 200px;
+  min-width: 200px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+}
+
+nav a {
+  display: block;
+  padding: 10px 18px;
+  color: var(--muted);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+}
+
+nav a::before {
+  content: '> ';
+  color: var(--border);
+}
+
+nav a:hover {
+  color: var(--accent);
+  border-left: 3px solid var(--accent);
+}
+
+nav a.active {
+  color: var(--text);
+  border-left: 3px solid var(--text);
+}
+
+main {
+  flex: 1;
+  padding: 0 40px 60px;
+  max-width: 980px;
+}
+
+#top-nav {
+  display: flex;
+  gap: 10px;
+  padding: 12px 20px;
+  margin: 0 -40px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+
+#top-nav button {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+#top-nav button:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+#btn-toggle {
+  margin-left: auto;
+}
+
+h1 {
+  display: inline-block;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 2.4em;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--text);
+  width: 0;
+  animation: typing 1.6s steps(28) forwards, blink 0.7s step-end infinite;
+}
+
+@keyframes typing { from { width: 0; } to { width: 100%; } }
+@keyframes blink { 0%, 100% { border-color: var(--text); } 50% { border-color: transparent; } }
+
+h2, h3 {
+  color: var(--temp);
+  font-family: var(--mono);
+  text-align: left;
+  text-decoration: underline;
+}
+
+p {
+  opacity: 0;
+  animation: fadein 1s ease forwards;
+  animation-delay: 0.3s;
+  color: var(--text);
+  font-family: var(--mono);
+  line-height: 1.5;
+}
+
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+th, td {
+  padding: 10px 16px;
+  border: 2px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  background: var(--surface);
+  color: var(--muted);
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--surface);
+}
+
+td.tag {
+  white-space: nowrap;
+  color: var(--accent);
+}
+
+code, pre {
+  font-family: var(--mono);
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 14px 18px;
+  overflow-x: auto;
+  color: var(--accent);
+  font-size: 0.9em;
+}
+
+.section {
+  margin-bottom: 44px;
+}
+
+.evidence {
+  font-size: 0.85em;
+  color: var(--muted);
+}
+
+a { color: var(--muted); text-decoration: underline; }
+a:hover { color: var(--accent); text-decoration: none; }
+a:visited { color: #FDE992; }
+  </style>
+  <script src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#btn-toggle').click(function () {
+        $('body').toggleClass('light-mode');
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <a href="/index.html">HOME</a>
+    <a href="#" class="active">DATA STRUCTURES</a>
+    <a href="javascript-capabilities.html">JAVASCRIPT</a>
+    <a href="databases-capabilities.html">DATABASES</a>
+    <a href="data-analytics-capabilities.html">DATA ANALYTICS</a>
+    <a href="server-management-capabilities.html">SERVER MANAGEMENT</a>
+    <a href="/Mod1/indexmod1.html">MOD 1</a>
+    <a href="/Mod2/indexmod2.html">MOD 2</a>
+  </nav>
+
+  <main>
+    <div id="top-nav">
+      <button onclick="location.href='/index.html'">Home</button>
+      <button id="btn-toggle">Dark/Light</button>
+    </div>
+
+    <h1>Data Structures Capabilities</h1>
+
+
+    <div class="section">
+      <p>
+        A summary of core data structures &amp; algorithms competencies &mdash;
+        from linear structures through trees, graphs, sorting, and algorithm
+        analysis &mdash; backed by working implementations for each area.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Skills Matrix</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Capability Area</th>
+            <th>Demonstrated Skills</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tag">Stacks &amp; Queues</td>
+            <td>LIFO/FIFO implementations, priority queues, circular queues, applied use cases (base conversion, balanced-parentheses checking, simulation)</td>
+          </tr>
+          <tr>
+            <td class="tag">Linked Lists</td>
+            <td>Singly linked list construction, insertion/removal at arbitrary positions, traversal, node-sharing between lists, both constructor and prototype implementation styles</td>
+          </tr>
+          <tr>
+            <td class="tag">Sets, Dictionaries &amp; Hash Tables</td>
+            <td>Set operations (union, intersection, difference, subset), key-value dictionaries, custom hash functions, collision resolution via separate chaining</td>
+          </tr>
+          <tr>
+            <td class="tag">Trees &amp; Graphs</td>
+            <td>Binary search tree insert/search/remove, in-order/pre-order/post-order traversal, graph representation via adjacency lists, breadth-first &amp; depth-first search, shortest-path (Dijkstra) and minimum-spanning-tree (Prim's) algorithms</td>
+          </tr>
+          <tr>
+            <td class="tag">Sorting &amp; Searching</td>
+            <td>Bubble sort, selection sort, quick sort, sequential search, binary search, applied text-processing search</td>
+          </tr>
+          <tr>
+            <td class="tag">Recursion &amp; Dynamic Programming</td>
+            <td>Recursive algorithms (Fibonacci, factorial, longest common subsequence, Collatz chains), memoization, dynamic-programming table construction (minimum coin change)</td>
+          </tr>
+          <tr>
+            <td class="tag">Algorithm Analysis &amp; Design</td>
+            <td>Big O reasoning (best/worst/average case), greedy algorithm design, imperative vs. functional problem-solving, complexity trade-off comparisons</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Selected Evidence</h2>
+
+      <h3>Stack-based algorithm application</h3>
+      <pre>function decimalToBinary(decNumber) {
+  var remStack = new Stack(), binaryString = "";
+  while (decNumber > 0) {
+    remStack.push(decNumber % 2);
+    decNumber = Math.floor(decNumber / 2);
+  }
+  while (!remStack.isEmpty()) {
+    binaryString += remStack.pop().toString();
+  }
+  return binaryString;
+}</pre>
+      <p class="evidence">Uses a custom stack implementation to solve a real conversion problem, not just to demonstrate the API.</p>
+
+      <h3>Priority queue with ordered insertion</h3>
+      <pre>PriorityQueue.prototype.enqueue = function (element, priority) {
+  var node = new QueueElement(element, priority);
+  var added = false;
+  for (var i = 0; i < this.items.length; i++) {
+    if (node.priority < this.items[i].priority) {
+      this.items.splice(i, 0, node);
+      added = true;
+      break;
+    }
+  }
+  if (!added) this.items.push(node);
+};</pre>
+      <p class="evidence">Maintains sort order on insert rather than sorting after the fact, keeping dequeue O(1).</p>
+
+      <h3>Linked list with arbitrary-position insert/remove</h3>
+      <pre>LinkedList.prototype.insert = function (index, element) {
+  var node = new Node(element), current = this.head, previous, i = 0;
+  if (index < 0 || index > this.length) return false;
+  if (index === 0) {
+    node.next = current;
+    this.head = node;
+  } else {
+    while (i++ < index) { previous = current; current = current.next; }
+    node.next = current;
+    previous.next = node;
+  }
+  this.length++;
+};</pre>
+      <p class="evidence">Handles the head-insertion edge case separately from mid-list insertion &mdash; a common interview-style pointer manipulation.</p>
+
+      <h3>Set algebra</h3>
+      <pre>Set.prototype.union = function (otherSet) {
+  var result = new Set();
+  this.values().forEach(function (v) { result.add(v); });
+  otherSet.values().forEach(function (v) { result.add(v); });
+  return result;
+};
+Set.prototype.intersection = function (otherSet) {
+  var result = new Set();
+  this.values().forEach(function (v) {
+    if (otherSet.has(v)) result.add(v);
+  });
+  return result;
+};</pre>
+      <p class="evidence">Implements union, intersection, difference, and subset from scratch rather than relying on a built-in Set.</p>
+
+      <h3>Hash table with collision handling</h3>
+      <pre>function loseLoseHashCode(key) {
+  var hash = 0;
+  for (var i = 0; i < key.length; i++) hash += key.charCodeAt(i);
+  return hash % 37;
+}
+
+HashTable.prototype.put = function (key, value) {
+  var position = loseLoseHashCode(key);
+  if (this.table[position] === undefined) this.table[position] = new LinkedList();
+  // walk the bucket's linked list to update an existing key, otherwise append
+};</pre>
+      <p class="evidence">Resolves hash collisions with separate chaining, backed by a linked list per bucket.</p>
+
+      <h3>Binary search tree traversal</h3>
+      <pre>BinarySearchTree.prototype._inOrderTraverseNode = function (node, callback) {
+  if (node !== null) {
+    this._inOrderTraverseNode(node.left, callback);
+    callback(node.key);
+    this._inOrderTraverseNode(node.right, callback);
+  }
+};</pre>
+      <p class="evidence">Recursive in-order traversal that visits keys in sorted order &mdash; also implemented for pre- and post-order.</p>
+
+      <h3>Graph search (BFS)</h3>
+      <pre>Graph.prototype.bfs = function (startVertex, callback) {
+  var color = {}, queue = [startVertex];
+  color[startVertex] = "gray";
+  while (queue.length > 0) {
+    var u = queue.shift();
+    this.adjList[u].forEach(function (w) {
+      if (color[w] !== "black" && color[w] !== "gray") {
+        color[w] = "gray";
+        queue.push(w);
+      }
+    });
+    color[u] = "black";
+    callback(u);
+  }
+};</pre>
+      <p class="evidence">Classic three-color BFS over an adjacency-list graph representation, queue-driven rather than recursive.</p>
+
+      <h3>Shortest path (Dijkstra's algorithm)</h3>
+      <pre>function dijkstra(graph, src) {
+  var dist = graph.map(function () { return Infinity; });
+  var visited = graph.map(function () { return false; });
+  dist[src] = 0;
+  for (var count = 0; count < graph.length; count++) {
+    var u = minDistance(dist, visited);
+    visited[u] = true;
+    for (var v = 0; v < graph.length; v++) {
+      if (!visited[v] && graph[u][v] && dist[u] + graph[u][v] < dist[v]) {
+        dist[v] = dist[u] + graph[u][v];
+      }
+    }
+  }
+  return dist;
+}</pre>
+      <p class="evidence">Computes shortest distances from a source vertex across a weighted adjacency matrix.</p>
+
+      <h3>Quick sort via partitioning</h3>
+      <pre>function quickSort(arr) {
+  if (arr.length <= 1) return arr;
+  var pivot = arr[Math.floor(arr.length / 2)];
+  var left = arr.filter(function (x) { return x < pivot; });
+  var middle = arr.filter(function (x) { return x === pivot; });
+  var right = arr.filter(function (x) { return x > pivot; });
+  return quickSort(left).concat(middle, quickSort(right));
+}</pre>
+      <p class="evidence">Recursive divide-and-conquer sort, paired with a Fisher-Yates shuffle to generate unsorted test data.</p>
+
+      <h3>Binary search</h3>
+      <pre>function binarySearch(sortedArr, target) {
+  var low = 0, high = sortedArr.length - 1;
+  while (low <= high) {
+    var mid = Math.floor((low + high) / 2);
+    if (sortedArr[mid] === target) return mid;
+    if (sortedArr[mid] < target) low = mid + 1;
+    else high = mid - 1;
+  }
+  return -1;
+}</pre>
+      <p class="evidence">Applied to a real text corpus &mdash; sorting and binary-searching the words of a document to check for the presence of specific terms.</p>
+
+      <h3>Dynamic programming: minimum coin change</h3>
+      <pre>function minCoinChangeDP(coins, amount) {
+  var dp = [0], used = [];
+  for (var i = 1; i <= amount; i++) {
+    dp[i] = Infinity;
+    for (var j = 0; j < coins.length; j++) {
+      if (coins[j] <= i && dp[i - coins[j]] + 1 < dp[i]) {
+        dp[i] = dp[i - coins[j]] + 1;
+        used[i] = coins[j];
+      }
+    }
+  }
+  return dp[amount];
+}</pre>
+      <p class="evidence">Builds a bottom-up DP table and compares the result directly against a greedy solution to the same problem, showing when greedy fails to be optimal.</p>
+
+      <h3>Recursion with memoization</h3>
+      <pre>function longestCollatzChain(limit) {
+  var cache = { 1: 1 };
+  function chainLength(n) {
+    if (cache[n]) return cache[n];
+    cache[n] = 1 + chainLength(n % 2 === 0 ? n / 2 : 3 * n + 1);
+    return cache[n];
+  }
+  var best = 1, bestStart = 1;
+  for (var s = 2; s < limit; s++) {
+    if (chainLength(s) > best) { best = chainLength(s); bestStart = s; }
+  }
+  return { start: bestStart, length: best };
+}</pre>
+      <p class="evidence">Caches recursive results to make an otherwise expensive brute-force search (Project Euler #14) tractable.</p>
+
+      <h3>Complexity analysis in practice</h3>
+      <pre>// O(n²): compares every pair
+function hasDuplicates(arr) {
+  for (var i = 0; i < arr.length; i++)
+    for (var j = 0; j < arr.length; j++)
+      if (i !== j && arr[i] === arr[j]) return true;
+  return false;
+}
+
+// O(n): single pass using a Set for O(1) lookups
+function hasDuplicatesFast(arr) {
+  var seen = new Set();
+  for (var i = 0; i < arr.length; i++) {
+    if (seen.has(arr[i])) return true;
+    seen.add(arr[i]);
+  }
+  return false;
+}</pre>
+      <p class="evidence">Identifies a quadratic bottleneck and rewrites it as a linear-time solution &mdash; demonstrating Big O analysis applied to real optimization, not just theory.</p>
+
+      <h3>Greedy algorithm design (Travelling Salesman)</h3>
+      <pre>function greedyTSP(graph, start) {
+  var visited = [start], current = start, total = 0;
+  while (visited.length < graph.length) {
+    var nearest = findNearestUnvisited(graph, current, visited);
+    total += graph[current][nearest.index];
+    visited.push(nearest.index);
+    current = nearest.index;
+  }
+  total += graph[current][start]; // return to origin
+  return { path: visited, total: total };
+}</pre>
+      <p class="evidence">Nearest-neighbor heuristic for a classic NP-hard problem, with an explicit discussion of why the greedy result isn't guaranteed optimal.</p>
+    </div>
+
+    <p><a href="/index.html">&larr; Back to Home</a></p>
+  </main>
+</body>
+</html>

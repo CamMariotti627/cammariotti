@@ -1,0 +1,326 @@
+<!Doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cam Mariotti — Databases Capabilities</title>
+  <style>
+:root {
+  --bg: #000000;
+  --surface: #232323;
+  --text: #09ab09;
+  --mono: 'Courier New', monospace;
+  --accent: whitesmoke;
+  --muted: #056605;
+  --border: #1a3d1a;
+  --altbg: var(--accent);
+  --alttext: var(--bg);
+  --altaccent: var(--text);
+  --temp: rgb(237, 230, 140);
+}
+
+body {
+  display: flex;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  margin: 0;
+}
+
+body.light-mode {
+  --temp:   #035603;
+  --bg:     var(--altbg);
+  --text:   var(--alttext);
+  --accent: var(--altaccent);
+  --surface: #e0e0e0;
+  --border:  #999999;
+  --muted:   #333333;
+}
+
+nav {
+  width: 200px;
+  min-width: 200px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+}
+
+nav a {
+  display: block;
+  padding: 10px 18px;
+  color: var(--muted);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+}
+
+nav a::before {
+  content: '> ';
+  color: var(--border);
+}
+
+nav a:hover {
+  color: var(--accent);
+  border-left: 3px solid var(--accent);
+}
+
+nav a.active {
+  color: var(--text);
+  border-left: 3px solid var(--text);
+}
+
+main {
+  flex: 1;
+  padding: 0 40px 60px;
+  max-width: 980px;
+}
+
+#top-nav {
+  display: flex;
+  gap: 10px;
+  padding: 12px 20px;
+  margin: 0 -40px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+
+#top-nav button {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+#top-nav button:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+#btn-toggle {
+  margin-left: auto;
+}
+
+h1 {
+  display: inline-block;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 2.4em;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--text);
+  width: 0;
+  animation: typing 1.6s steps(28) forwards, blink 0.7s step-end infinite;
+}
+
+@keyframes typing { from { width: 0; } to { width: 100%; } }
+@keyframes blink { 0%, 100% { border-color: var(--text); } 50% { border-color: transparent; } }
+
+h2, h3 {
+  color: var(--temp);
+  font-family: var(--mono);
+  text-align: left;
+  text-decoration: underline;
+}
+
+p {
+  opacity: 0;
+  animation: fadein 1s ease forwards;
+  animation-delay: 0.3s;
+  color: var(--text);
+  font-family: var(--mono);
+  line-height: 1.5;
+}
+
+@keyframes fadein { from { opacity: 0; } to { opacity: 1; } }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+th, td {
+  padding: 10px 16px;
+  border: 2px solid var(--border);
+  vertical-align: top;
+}
+
+th {
+  background: var(--surface);
+  color: var(--muted);
+  text-align: center;
+}
+
+tbody tr:nth-child(even) {
+  background: var(--surface);
+}
+
+td.tag {
+  white-space: nowrap;
+  color: var(--accent);
+}
+
+code, pre {
+  font-family: var(--mono);
+}
+
+pre {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 14px 18px;
+  overflow-x: auto;
+  color: var(--accent);
+  font-size: 0.9em;
+}
+
+.section {
+  margin-bottom: 44px;
+}
+
+ul.capability-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+}
+
+ul.capability-list li {
+  position: relative;
+  padding: 8px 0 8px 24px;
+  color: var(--text);
+  line-height: 1.5;
+  border-bottom: 1px solid var(--border);
+}
+
+ul.capability-list li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+}
+
+.evidence {
+  font-size: 0.85em;
+  color: var(--muted);
+}
+
+a { color: var(--muted); text-decoration: underline; }
+a:hover { color: var(--accent); text-decoration: none; }
+a:visited { color: #FDE992; }
+  </style>
+  <script src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#btn-toggle').click(function () {
+        $('body').toggleClass('light-mode');
+      });
+    });
+  </script>
+</head>
+<body>
+  <nav>
+    <a href="/index.html">HOME</a>
+    <a href="data-structures-capabilities.html">DATA STRUCTURES</a>
+    <a href="javascript-capabilities.html">JAVASCRIPT</a>
+    <a href="#" class="active">DATABASES</a>
+    <a href="data-analytics-capabilities.html">DATA ANALYTICS</a>
+    <a href="server-management-capabilities.html">SERVER MANAGEMENT</a>
+    <a href="/Mod1/indexmod1.html">MOD 1</a>
+    <a href="/Mod2/indexmod2.html">MOD 2</a>
+  </nav>
+
+  <main>
+    <div id="top-nav">
+      <button onclick="location.href='/index.html'">Home</button>
+      <button id="btn-toggle">Dark/Light</button>
+    </div>
+
+    <h1>Databases Capabilities</h1>
+
+    <div class="section">
+      <p>
+        A summary of core database design, querying, and administration
+        competencies &mdash; spanning relational design theory, SQL, stored
+        procedures, triggers, and cross-platform database administration.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Database Design &amp; Architecture</h2>
+      <ul class="capability-list">
+        <li>Design relational databases using a structured 6-step methodology from requirements gathering through index optimization</li>
+        <li>Build and interpret Entity-Relationship (EER) models to visualize table relationships at a system level</li>
+        <li>Apply all seven normal forms to eliminate data redundancy and optimize database structure</li>
+        <li>Design primary and foreign key relationships with referential integrity constraints</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>SQL Querying &amp; Data Retrieval</h2>
+      <ul class="capability-list">
+        <li>Write complex SELECT statements using JOIN, GROUP BY, HAVING, ORDER BY, and LIMIT clauses</li>
+        <li>Apply aggregate functions including COUNT, SUM, and calculated expressions across joined tables</li>
+        <li>Use string, numeric, temporal, and ranking functions to transform and organize result sets</li>
+        <li>Implement regular expressions and pattern matching for advanced data filtering</li>
+        <li>Perform implicit and explicit data type conversion using CAST and CONVERT</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Views &amp; Data Access Control</h2>
+      <ul class="capability-list">
+        <li>Create updateable and read-only views to abstract query complexity and enforce data security</li>
+        <li>Implement WITH CHECK OPTION to maintain view integrity across INSERT and UPDATE operations</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Stored Procedures &amp; Functions</h2>
+      <ul class="capability-list">
+        <li>Write stored procedures with IN, OUT, and IN/OUT parameters for reusable database logic</li>
+        <li>Implement control flow using IF/ELSE, CASE/WHEN, WHILE, LOOP, and REPEAT structures</li>
+        <li>Declare and manage cursors for row-by-row result set processing</li>
+        <li>Handle database errors using condition handlers, SQLSTATE codes, and exception blocks</li>
+        <li>Create scalar stored functions with DETERMINISTIC and SQL characteristic declarations</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Triggers &amp; Automated Events</h2>
+      <ul class="capability-list">
+        <li>Create BEFORE and AFTER triggers on INSERT, UPDATE, and DELETE operations</li>
+        <li>Use OLD and NEW row references to enforce data consistency within triggers</li>
+        <li>Schedule recurring database events using the MySQL/PostgreSQL event scheduler</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>Database Administration</h2>
+      <ul class="capability-list">
+        <li>Monitor database health through process lists, status variables, and system variables</li>
+        <li>Manage log files including general, error, slow query, binary, and relay logs</li>
+        <li>Understand and apply DBA responsibilities across maintenance, security, backup, and design domains</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>MySQL &amp; PostgreSQL</h2>
+      <ul class="capability-list">
+        <li>Proficient in both MySQL Workbench and PostgreSQL environments</li>
+        <li>Translate queries and stored procedures between MySQL and PostgreSQL syntax</li>
+        <li>Use plpgsql procedural language for PostgreSQL stored procedures with RAISE NOTICE output handling</li>
+      </ul>
+    </div>
+
+    <p><a href="/index.html">&larr; Back to Home</a></p>
+  </main>
+</body>
+</html>

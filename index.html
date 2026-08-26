@@ -1,54 +1,368 @@
-<Doctype! html>
-  <html>
-    <title>My Professional Website</title>
+<!Doctype html>
+  <html lang="en">
     <head>
-      <h2>Cam Mariotti</h2>
+      <meta charset="UTF-8">
+      <title>Cam Mariotti</title>
+    <style>
+:root {
+  /* terminal dark mode color theme */
+  --bg: #000000;
+  --surface: #232323;
+  --text: #09ab09;
+  --mono: 'Courier New', monospace;
+  --accent: whitesmoke;
+  --muted: #056605;
+  --border: #1a3d1a;
+  /* alt light mode terminal colors*/
+  --altbg:var(--accent);
+  --alttext:var(--bg);
+  --altaccent:var(--text);
+  /* api page colors */
+  --apibg: #FDE992;
+  --apitext: #000000;
+  --apiaccent:  #035603; 
+  --apisurface: #5a010a;
+  --apimono: "Arial", sans-serif;
+  --temp: rgb(237, 230, 140);
+
+}
+
+body {
+  display: flex;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+}
+
+body.light-mode {
+  --temp:   #035603;
+  --bg:     var(--altbg);
+  --text:   var(--alttext);
+  --accent: var(--altaccent);
+  --surface: #e0e0e0;
+  --border:  #999999;
+  --muted:   #333333;
+}
+
+big {
+  font-size: 2em;
+  font-family: var(--mono);
+}
+
+main h1 {
+  display: inline-block;
+  color: var(--accent);
+  font-family: var(--mono);
+  font-size: 3em;
+  font-weight: bold;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid var(--text);
+  width: 0;
+  animation: typing 2s steps(20) forwards, blink 0.7s step-end infinite;         
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 100%; }
+}
+
+@keyframes blink {
+  0%, 100% { border-color: var(--text); }
+  50%      { border-color: transparent; }
+}
+
+h2, h3 {
+  color: var(--temp);
+  font-family: var(--mono);
+  background: var(--bg);
+  text-decoration: underline;
+  text-align: center;
+}
+
+p {
+  opacity: 0;
+  animation: fadein 1s ease forwards;
+  animation-delay: 0.5s;
+  color: var(--text);
+  font-family: var(--mono);
+  background: var(--bg);
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+a {
+  color: var(--muted);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:visited {
+  color: var(--apibg);
+  text-decoration: underline;
+}
+
+div {
+  background: var(--bg);
+  text-align: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; 
+  text-align: center;
+}
+
+th, td {
+  padding: 10px 16px;
+  border: 2px solid var(--border);
+  text-align: center;
+}
+
+th {
+  background: var(--surface);
+  color: var(--muted);
+}
+
+tbody tr:nth-child(even) {
+  background: var(--surface);
+}
+
+nav {
+  width: 200px;
+  min-width: 200px;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 0;
+}
+
+nav a {
+  display:block;
+  padding: 10px 18px;
+  color: var(--muted);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+}
+
+nav a::before {
+  content: '> ';
+  color: var(--border);
+}
+
+nav a:hover {
+  color: var(--accent);
+  border-left: 3px solid var(--accent);
+}
+
+nav a:active {
+  color: var(--text);
+  border-left: 3px solid var(--text);
+}
+
+#page-about,
+#page-contact {
+  display: none;
+}
+
+#top-nav {
+  display: flex;
+  gap: 10px;
+  padding: 12px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+}
+
+#btn-toggle {
+  margin-left: auto;
+}
+
+#top-nav button {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 13px;
+  padding: 6px 14px;
+  cursor: pointer;
+}
+
+#top-nav button:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.accordion-content {
+  display: none;
+  padding-left: 0;
+}
+
+.accordion-header {
+  display: block;
+  padding: 10px 18px;
+  color: var(--muted);
+  text-decoration: none;
+  border-left: 3px solid transparent;
+  cursor: pointer;
+}
+
+.accordion-header::before {
+  content: '> ';
+  color: var(--border)
+}
+
+.accordion-content a {
+  font-size: 12px;
+  padding: 6px 18px;
+  display: block;
+  text-align: left;
+}
+
+    </style>
+    <script src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+      $(document).ready(function() {
+// Home button
+      $('#btn-home').click(function() {
+        $('#page-home').show();
+        $('#page-about').hide();
+        $('#page-contact').hide();
+      });
+
+// About button
+      $('#btn-about').click(function() {
+        $('#page-home').hide();
+        $('#page-about').show();
+        $('#page-contact').hide();
+      });
+
+// Contact button
+      $('#btn-contact').click(function() {
+        $('#page-home').hide();
+        $('#page-about').hide();
+        $('#page-contact').show();
+      });
+// Dark/Light mode toggle button
+      $('#btn-toggle').click(function() {
+        $('body').toggleClass('light-mode');
+      });
+
+      $('.accordion-header').click(function(e) {
+        e.preventDefault();
+        $(this).next('.accordion-content').slideToggle(300);
+      })
+    
+    });
+    </script>
     </head>
     <body>
-      <img src= "images/profile photo.jpeg" alt="Me in the studio." width="300">
+      <nav>
+        <a href="/index.html" class="active">HOME</a>
+        
+        <div class="accordion">
+          <a class="accordion-header">Professional Capabilities</a>
+          <div class="accordion-content">
+            <a href="/data-structures-capabilities.html">DATA STRUCTURES</a>
+            <a href="/javascript-capabilities.html">JAVASCRIPT</a>
+            <a href="/databases-capabilities.html">DATABASES</a>
+            <a href="/data-analytics-capabilities.html">DATA ANALYTICS</a>
+            <a href="/server-management-capabilities.html">SERVER MANAGEMENT</a>
+          </div>
+        </div>
+
+        <a href="/Mod1/indexmod1.html">MOD 1</a>
+        <a href="/Mod2/indexmod2.html">MOD 2</a>
+
+      </nav>
+      <main>
+      
+      <div id="top-nav">
+        <button id="btn-home">Home</button>
+        <button id="btn-about">About</button>
+        <button id="btn-contact">Contact</button>
+        <button id="btn-toggle">Dark/Light</button>
+      </div>
+
+      <div id="page-home">
+      <h1>Cam Mariotti</h1>
+     <div style="text-align: center;">
+      <img src= "profile-photo.jpeg" alt="Me in the studio." width="300">
+    </div>
       <h2>
-        Computer Science Student
+        <br>Computer Science Student
         <br> Real Estate Title Examiner
         <br> Songwriter
         <br> Multi-Instrumentalist
         <br> Illustrator
       </h2>
-      <div>
-        <h2>Contact Me:</h2>
-        <div>
-        <h3> email: cam.mariotti@pointpark.edu </h3>
-        <div>
-        <h3>Social Media:</h3>
-        <div><a href = "https://www.linkedin.com/in/cam-mariotti-a12776372"> LinkedIn</a>
-        </div>
-        <div>
-          Phone: Please email for phone contact if necessary.
-        </div>
+      </div>
+      <div id="page-about">
         <h2>
           Hobbies:
         </h2>
-          <div>
-          </div>
-          <body>
+        <br>
+        <br>
+          <p>
             My Hobbies include songwriting, composing, illustrating, jogging, hanging out with my dog, cat, and girlfriend.
-          <div>
+          </p>
+          <br>
+          <br>
+
             <h2> Interests </h2>
             <br>  
-            My interests includemusic, art, collecting vinyl, animals, storytelling, anime, manga, comics, illustration, and audio engineering, digital marketing & content creation.
-            <br>  
+            <p>
+            My interests include music, art, collecting vinyl, animals, storytelling, anime, manga, comics, illustration, audio engineering, digital marketing & content creation.
+            <br>
+            <br>
+          <p>
             I play guitar, bass, drums, sing, and have been learning Japanese for a number of years, despite being pretty bad at it.
-          
-            <br>  I own a small recording studio that I run out of my house, largely for purposes of content creation and exploration of my personal musical projects. I'll include a picture of it here!
+          </p>
+            <br>
+            <br>
+           <p>
+             I own a small recording studio that I run out of my house, largely for purposes of content creation and exploration of my personal musical projects. I'll include a picture of it here!
+            </p>
+            <div style="text-align: center;">
             <img src="images/studiopic.jpg" alt="My home studio." width="600">
-          </body>
-            <div>
-            <h2> Summer Classes </h2> This is my last summer class before Networking in the beginning of Fall semester, having just finished Data Structures with Dr. Oliveira last summer term. 
             </div>
-          <h3>
-          </h3>
-        </h2>
+            <h2> Summer Classes </h2>
+             This is my last summer class before Networking in the beginning of Fall semester, having just finished Data Structures with Dr. Oliveira last summer term. 
+            </div>
+
+            <div id="page-contact">
+            <h2> Contact Information </h2>         
+            <table>
+            <thead>
+              <tr>
+                <th> Email </th>
+                <th> LinkedIn </th>
+                <th> GitHub </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td> cam.mariotti@pointpark.edu </td>
+                <td> <a href="https://www.linkedin.com/in/cam-mariotti-a12776372"> LinkedIn </a> </td>
+                <td> <a href="https://github.com/cammariotti"> GitHub </a> </td>
+              </tr>
+            </tbody>
+          </table>
       </div>
+      </main>
     </body>
+
 
 
 

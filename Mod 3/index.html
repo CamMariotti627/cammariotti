@@ -204,32 +204,6 @@ nav a:active {
   border-color: var(--accent);
 }
 
-.accordion-content {
-  display: none;
-  padding-left: 0;
-}
-
-.accordion-header {
-  display: block;
-  padding: 10px 18px;
-  color: var(--muted);
-  text-decoration: none;
-  border-left: 3px solid transparent;
-  cursor: pointer;
-}
-
-.accordion-header::before {
-  content: '> ';
-  color: var(--border)
-}
-
-.accordion-content a {
-  font-size: 12px;
-  padding: 6px 18px;
-  display: block;
-  text-align: left;
-}
-
     </style>
     <script src="http://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script>
@@ -258,11 +232,6 @@ nav a:active {
       $('#btn-toggle').click(function() {
         $('body').toggleClass('light-mode');
       });
-
-      $('.accordion-header').click(function(e) {
-        e.preventDefault();
-        $(this).next('.accordion-content').slideToggle(300);
-      })
     
     });
     </script>
@@ -270,18 +239,6 @@ nav a:active {
     <body>
       <nav>
         <a href="/index.html" class="active">HOME</a>
-        
-        <div class="accordion">
-          <a class="accordion-header">Professional Capabilities</a>
-          <div class="accordion-content">
-            <a href="/data-structures-capabilities.html">DATA STRUCTURES</a>
-            <a href="/javascript-capabilities.html">JAVASCRIPT</a>
-            <a href="/databases-capabilities.html">DATABASES</a>
-            <a href="/data-analytics-capabilities.html">DATA ANALYTICS</a>
-            <a href="/server-management-capabilities.html">SERVER MANAGEMENT</a>
-          </div>
-        </div>
-
         <a href="/Mod1/indexmod1.html">MOD 1</a>
         <a href="/Mod2/indexmod2.html">MOD 2</a>
 
@@ -295,7 +252,7 @@ nav a:active {
         <button id="btn-toggle">Dark/Light</button>
       </div>
 
-      <div id="page-home">
+      <div id="page-home"></div>
       <h1>Cam Mariotti</h1>
      <div style="text-align: center;">
       <img src= "profile-photo.jpeg" alt="Me in the studio." width="300">
@@ -360,6 +317,7 @@ nav a:active {
             </tbody>
           </table>
       </div>
+    </div>
       </main>
     </body>
 

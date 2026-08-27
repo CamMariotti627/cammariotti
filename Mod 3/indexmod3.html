@@ -28,7 +28,6 @@
 }
 
 body {
-  display: flex;
   background: var(--bg);
   color: var(--text);
   font-family: var(--mono);
@@ -95,7 +94,7 @@ a:hover {
 }
 
 a:visited {
-  color: var(--apibg);
+  color: var(--apisurface);
   text-decoration: underline;
 }
 
@@ -125,57 +124,19 @@ tbody tr:nth-child(even) {
   background: var(--surface);
 }
 
-nav {
-  width: 200px;
-  min-width: 200px;
-  background: var(--surface);
-  border-right: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  padding: 24px 0;
-}
 
-nav a {
-  display:block;
-  padding: 10px 18px;
-  color: var(--muted);
-  text-decoration: none;
-  border-left: 3px solid transparent;
-}
 
-nav a::before {
-  content: '> ';
-  color: var(--border);
-}
 
-nav a:hover {
-  color: var(--accent);
-  border-left: 3px solid var(--accent);
-}
-
-nav a:active {
-  color: var(--text);
-  border-left: 3px solid var(--text);
-}
     </style>
     </head>
     <body>
-      <nav>
-        <a href="/index.html" class="active">HOME</a>
-        <a href="/Mod1/indexmod1.html" class="active">MOD 1</a>
-        <a href="/Mod2/indexmod2.html" class="active">MOD 2</a>
-
-      </nav>
     <main>
       <div style="text-align: center;">
 
       <h1>Cam Mariotti</h1>
       </div>
      <div style="text-align: center;">
-      <img src= "../profile-photo.jpeg" alt="Me in the studio." width="300">
+      <img src= "images/profile photo.jpeg" alt="Me in the studio." width="300">
     </div>
       <h2>
         <br>Computer Science Student
@@ -211,7 +172,7 @@ nav a:active {
             </p>
             <div></div>
             <div style="text-align: center;">
-            <img src="../studiopic.jpg" alt="My home studio." width="600">
+            <img src="images/studiopic.jpg" alt="My home studio." width="600">
             </div>
             <div>
             <h2> Summer Classes </h2>

@@ -51,6 +51,13 @@ big {
   font-family: var(--mono);
 }
 
+main {
+  flex: 1;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
 main h1 {
   display: inline-block;
   color: var(--accent);
@@ -174,7 +181,7 @@ nav a:active {
   border-left: 3px solid var(--text);
 }
 
-#page-about,
+
 #page-contact {
   display: none;
 }
@@ -240,21 +247,12 @@ nav a:active {
 // Home button
       $('#btn-home').click(function() {
         $('#page-home').show();
-        $('#page-about').hide();
-        $('#page-contact').hide();
-      });
-
-// About button
-      $('#btn-about').click(function() {
-        $('#page-home').hide();
-        $('#page-about').show();
         $('#page-contact').hide();
       });
 
 // Contact button
       $('#btn-contact').click(function() {
         $('#page-home').hide();
-        $('#page-about').hide();
         $('#page-contact').show();
       });
 // Dark/Light mode toggle button
@@ -287,14 +285,13 @@ nav a:active {
       </nav>
       <main>
       
-      <div id="top-nav">
+  <div id="top-nav">
         <button id="btn-home">Home</button>
-        <button id="btn-about">About</button>
         <button id="btn-contact">Contact</button>
         <button id="btn-toggle">Dark/Light</button>
       </div>
 
-      <div id="page-home">
+  <div id="page-home">
       <h1>Cam Mariotti</h1>
      <div style="text-align: center;">
       <img src= "profile-photo.jpeg" alt="Me in the studio." width="300">
@@ -304,27 +301,37 @@ nav a:active {
         <br>Title Examiner
         <br>Data Analyst
         <br>Web Developer
-
         <br> 
       </h2>
-      </div>
-      <div id="page-about">
-        <h2>
-         Capabilities include Data Structures, JavaScript, Databases, Data Analytics, Web Development, and Server Management.
-        </h2>
+        <h3>
+        Professional Capabilities include:
+        </h3>
+        <p>
+        Data Structures<br>
+        JavaScript<br>
+        Databases<br>
+        Data Analytics<br> 
+        Web Development<br>
+        Server Management<br>
+        </p>
         <br>
         <br>
+            <h3>About Me</h3>
           <p>
-            
-          </p>
-            <br>  
-            <p>
+          Computer Science Professional with 20 years of experience in Real Estate Title Examination.  Currently hold a 4.0 GPA in pursuit of a second Bachelor's degree in Computer Science. I welcome you to explore this website to learn more about my professional capabilities in each of the areas listed above.
+          <br>
+          Please feel free to contact me with any questions or inquiries about my professional capabilities or to discuss potential opportunities for collaboration or employment.
+          <br>
+          I look forward to connecting, and exploring potential opportunities to contribute my skills to your team, project, or organization.
+          <br>
+       </p>
+          <br>  
+          <p>
 
             <br>
             <br>
             </p>
-            <div style="text-align: center;">
-            <img src="images/studiopic.jpg" alt="My home studio." width="600">
+
             </div>
             <div id="page-contact">
             <h2> Contact Information </h2>         

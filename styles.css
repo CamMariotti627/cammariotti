@@ -210,7 +210,7 @@ ul.capability-list li::before {
 
 a { color: var(--muted); text-decoration: underline; }
 a:hover { color: var(--accent); text-decoration: none; }
-a:visited { color: #FDE992; }
+a:visited { color: var(--temp); }
 
 /* ---- Featured project cards (imported from standalone case-study docs) ---- */
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');

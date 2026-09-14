@@ -65,7 +65,7 @@ nav a:hover {
 
 nav a.active {
   color: var(--accent);
-  border-left: 3px solid var(--text);
+  border-left: 3px solid var(--ocean-soft);
 }
 
 nav a:visited {
@@ -91,7 +91,7 @@ main {
 
 #top-nav button {
   background: var(--ocean);
-  color: var(--clay);
+  color: var(--accent);
   border: none;
   border-radius: 10px;
   font-family: var(--mono);

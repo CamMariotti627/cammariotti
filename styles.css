@@ -6,12 +6,11 @@
   --accent: whitesmoke;
   --muted: #2E5266;
   --border: #263C4A;
-  --altbg: var(--accent);
-  --alttext: var(--bg);
-  --altaccent: var(--text);
   --temp: #DFC0A2;
   --ocean: #2E5266;
   --clay: #C98B52;
+  --ocean-soft: #263C4A;
+  --clay-soft: #DFC0A2;
 }
 
 body {
@@ -23,13 +22,17 @@ body {
 }
 
 body.light-mode {
-  --temp:   #F5F5F2;
-  --bg:     var(--altbg);
-  --text:   var(--alttext);
-  --accent: var(--altaccent);
+  --temp:    #F5F5F2;
+  --bg:      #F5F5F2;
+  --text:    #1E262E;
+  --accent:  #1E262E;
   --surface: #DFC0A2;
   --border:  #C98B52;
   --muted:   #2E5266;
+}
+
+body.light-mode #top-nav button {
+  color: white;
 }
 
 nav {
@@ -48,7 +51,7 @@ nav {
 nav a {
   display: block;
   padding: 10px 18px;
-  color: var(--temp);
+  color: var(--clay);
   text-decoration: none;
   border-left: 3px solid transparent;
 }
@@ -69,9 +72,30 @@ nav a.active {
 }
 
 nav a:visited {
-    color: var(--clay);
+  color: var(--clay);
 }
 
+.accordion-header {
+  display: block;
+  padding: 10px 18px;
+  color: var(--clay);
+  text-decoration: none;
+  cursor: pointer;
+  border-left: 3px solid transparent;
+}
+
+.accordion-header:hover {
+  color: var(--accent);
+}
+
+.accordion-content {
+  display: none;
+  padding-left: 0;
+}
+
+.accordion-content a {
+  font-size: 12px;
+}
 
 main {
   flex: 1;
@@ -107,16 +131,6 @@ main {
 
 #btn-toggle {
   margin-left: auto;
-}
-
-body.light-mode {
-  --temp:   #F5F5F2;
-  --bg:     #F5F5F2;
-  --text:   #1E262E;
-  --accent: #1E262E;
-  --surface: #DFC0A2;
-  --border:  #C98B52;
-  --muted:   #2E5266;
 }
 
 h1 {
@@ -189,7 +203,7 @@ pre {
   border: 1px solid var(--accent);
   padding: 14px 18px;
   overflow-x: auto;
-  color: var(--accent);
+  color: var(--bg);
   font-size: 0.9em;
 }
 
@@ -235,16 +249,15 @@ a:visited { color: var(--ocean); }
 }
 
 .cm-card {
-  --ink: whitesmoke;
-  --ink-soft: var(--ocean);;
-  --bg: #1E262E;
-  --paper: #1c1c1c;
-  --line: var(--ocean);;
-  --wash: var(--ocean-soft);;
-  --accent2: var(--clay);;
-  --accent2-soft: var(--clay-soft);;
-  --gold: rgb(237, 230, 140);
-  --gold-soft: #3a3620;
+  --ink: var(--temp);
+  --ink-soft: var(--ocean);
+  --paper: #263C4A;
+  --line: var(--ocean);
+  --wash: var(--ocean-soft);
+  --accent2: var(--clay);
+  --accent2-soft: var(--clay-soft);
+  --gold: var(--clay);
+  --gold-soft: var(--clay-soft);
   font-family: 'Manrope', system-ui, -apple-system, sans-serif;
   color: var(--ink);
   background: var(--paper);
@@ -257,17 +270,18 @@ a:visited { color: var(--ocean); }
 }
 
 body.light-mode .cm-card {
-  --ink: #16293a;
-  --ink-soft: #56697a;
-  --paper: #DFC0A2;
+  --ink: #1E262E;
+  --ink-soft: #2E5266;
+  --paper: #ffffff;
   --line: #dfe6ec;
   --wash: #f3f6f9;
-  --accent2: var(--ocean);
-  --accent2-soft: #e4f2ee;
-  --gold: #a8710f;
-  --gold-soft: #f8eedd;
+  --accent2: #2E5266;
+  --accent2-soft: #e3ecf0;
+  --gold: #C98B52;
+  --gold-soft: #f6ecde;
   box-shadow: 0 1px 2px rgba(22,41,58,0.04), 0 8px 24px rgba(22,41,58,0.06);
 }
+
 .cm-eyebrow {
   text-transform: uppercase;
   letter-spacing: 0.11em;

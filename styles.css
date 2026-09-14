@@ -221,12 +221,13 @@ a:visited { color: var(--ocean); }
 
 .cm-card {
   --ink: whitesmoke;
-  --ink-soft: #6fcf6f;
+  --ink-soft: var(--ocean);;
+  --bg: #1E262E;
   --paper: #1c1c1c;
-  --line: #2c452c;
-  --wash: #223122;
-  --accent2: #1fd11f;
-  --accent2-soft: #163516;
+  --line: var(--ocean);;
+  --wash: var(--ocean-soft);;
+  --accent2: var(--clay);;
+  --accent2-soft: var(--clay-soft);;
   --gold: rgb(237, 230, 140);
   --gold-soft: #3a3620;
   font-family: 'Manrope', system-ui, -apple-system, sans-serif;
@@ -243,10 +244,10 @@ a:visited { color: var(--ocean); }
 body.light-mode .cm-card {
   --ink: #16293a;
   --ink-soft: #56697a;
-  --paper: #ffffff;
+  --paper: #DFC0A2;
   --line: #dfe6ec;
   --wash: #f3f6f9;
-  --accent2: #0e6e5c;
+  --accent2: var(--ocean);
   --accent2-soft: #e4f2ee;
   --gold: #a8710f;
   --gold-soft: #f8eedd;

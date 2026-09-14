@@ -55,16 +55,16 @@ nav a {
 
 nav a::before {
   content: '> ';
-  color: var(--border);
+  color: var(--clay);
 }
 
 nav a:hover {
   color: var(--accent);
-  border-left: 3px solid var(--accent);
+  border-left: 3px solid var(--temp);
 }
 
 nav a.active {
-  color: var(--text);
+  color: var(--accent);
   border-left: 3px solid var(--text);
 }
 

@@ -48,7 +48,7 @@ nav {
 nav a {
   display: block;
   padding: 10px 18px;
-  color: var(--muted);
+  color: var(--temp);
   text-decoration: none;
   border-left: 3px solid transparent;
 }
@@ -68,6 +68,11 @@ nav a.active {
   border-left: 3px solid var(--text);
 }
 
+nav a:visited {
+    color: var(--clay);
+}
+
+
 main {
   flex: 1;
   padding: 0 40px 60px;
@@ -86,7 +91,7 @@ main {
 
 #top-nav button {
   background: var(--ocean);
-  color: var(--bg);
+  color: var(--clay);
   border: none;
   border-radius: 10px;
   font-family: var(--mono);
@@ -102,6 +107,16 @@ main {
 
 #btn-toggle {
   margin-left: auto;
+}
+
+body.light-mode {
+  --temp:   #F5F5F2;
+  --bg:     #F5F5F2;
+  --text:   #1E262E;
+  --accent: #1E262E;
+  --surface: #DFC0A2;
+  --border:  #C98B52;
+  --muted:   #2E5266;
 }
 
 h1 {
@@ -171,7 +186,7 @@ code, pre {
 
 pre {
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--accent);
   padding: 14px 18px;
   overflow-x: auto;
   color: var(--accent);

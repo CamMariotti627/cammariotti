@@ -207,8 +207,14 @@ pre {
   border: 1px solid var(--accent);
   padding: 14px 18px;
   overflow-x: auto;
-  color: var(--bg);
+  color: whitesmoke;
   font-size: 0.9em;
+}
+
+body.light-mode pre {
+    background: var(--temp);
+    border: 1px solid var(--clay);
+    color: #1E262E;
 }
 
 .section {

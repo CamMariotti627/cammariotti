@@ -120,9 +120,21 @@
             <table class="cm-table">
               <thead><tr><th>Rule Intent</th><th>Before (broken)</th><th>After (fixed)</th></tr></thead>
               <tbody>
-                <tr><td>Allow inbound TCP</td><td><span class="cm-pill gold">pass in proto tcp</span></td><td><span class="cm-pill">pass in quick proto tcp</span></td></tr>
-                <tr><td>Loopback interface</td><td>Not exempted — blocked by default</td><td><span class="cm-pill">set skip on lo0</span></td></tr>
-                <tr><td>Result</td><td>Localhost tests failed with no error output</td><td>Local &amp; network traffic pass as intended</td></tr>
+                <tr>
+                  <td data-label="Rule Intent">Allow inbound TCP</td>
+                  <td data-label="Before (broken)"><span class="cm-pill gold">pass in proto tcp</span></td>
+                  <td data-label="After (fixed)"><span class="cm-pill">pass in quick proto tcp</span></td>
+                </tr>
+                <tr>
+                  <td data-label="Rule Intent">Loopback interface</td>
+                  <td data-label="Before (broken)">Not exempted — blocked by default</td>
+                  <td data-label="After (fixed)"><span class="cm-pill">set skip on lo0</span></td>
+                </tr>
+                <tr>
+                  <td data-label="Rule Intent">Result</td>
+                  <td data-label="Before (broken)">Localhost tests failed with no error output</td>
+                  <td data-label="After (fixed)">Local &amp; network traffic pass as intended</td>
+                </tr>
               </tbody>
             </table>
 

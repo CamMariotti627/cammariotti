@@ -1,3 +1,7 @@
+
+/* ---- Featured project cards (imported from standalone case-study docs) ---- */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
 :root {
   --bg: #1E262E;
   --heading: #DFC0A2;
@@ -25,7 +29,7 @@ body {
 
 body.light-mode {
   --temp:    #F5F5F2;
-  --heading: #DFC0A2; 
+  --heading: #2E5266; 
   --bg:      #F5F5F2;
   --text:    #1E262E;
   --accent:  #1E262E;
@@ -75,7 +79,7 @@ nav a.active {
 }
 
 nav a:visited {
-  color: var(--muted);
+  color: var(--clay);
 }
 
 .accordion-header {
@@ -253,10 +257,10 @@ ul.capability-list li::before {
 
 a { color: var(--muted); text-decoration: underline; }
 a:hover { color: var(--accent); text-decoration: none; }
-a:visited { color: var(--ocean); }
+a:visited { color: var(--muted); 
+}
 
-/* ---- Featured project cards (imported from standalone case-study docs) ---- */
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
 
 .project-wrap {
   margin: 0 0 26px;
@@ -271,7 +275,7 @@ a:visited { color: var(--ocean); }
   --accent2: var(--clay);
   --accent2-soft: #1b2630;
   --gold: var(--clay);
-  --gold-soft: var(#1b2630);
+  --gold-soft: #1b2630;
   font-family: 'Manrope', system-ui, -apple-system, sans-serif;
   color: var(--ink);
   background: var(--paper);
@@ -500,4 +504,71 @@ body.light-mode .cm-card {
     }
 }
 
+/* == table.responsive: stacked rows on phones, real table on desktop ===
+BASE = PHONE LAYOUT */
 
+table.responsive {
+    display: block;
+    overflow-x: visible;
+    white-space: normal;
+}
+
+table.responsive tbody,
+table.responsive tr,
+table.responsive td {
+    display: block;
+}
+
+table.responsive thead {
+    position: absolute; /* hidden visually, still readable by screen readers */
+    left: -9999px; /* move off-screen */
+}
+
+table.responsive tr {
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+
+table.responsive td {
+  border: 0;
+  padding: 8px 12px;
+  white-space: normal;
+  overflow-wrap: break-word; /* long emails wrap instead of overflowing */
+}
+
+table.responsive td.tag {
+    font-weight: 700; /* firstcell acts as card's title */
+}
+
+table.responsive td[data-label]::before {
+  content: attr(data-label);
+  display: block;
+  font-size: 0.75em;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+
+/* DESKTOP UPGRADE - back to real table at 768 px & up */
+@media (min-width: 768px) {
+  table.responsive        { display: table; }
+  table.responsive tbody  { display: table-row-group; }
+  table.responsive thead  { position: static; }
+  table.responsive tr     { display: table-row; border: 0; border-radius: 0; margin: 0; }
+  table.responsive td     { display: table-cell; padding: 8px 10px; border: 2px solid var(--border); }
+  table.responsive td[data-label]::before { content: none;}
+}
+
+@media (min-width: 768px) {
+  .cm-card table.cm-table            { display: table; }
+  .cm-card table.cm-table tbody      { display: table-row-group; }
+  .cm-card table.cm-table thead      { position: static; }
+  .cm-card table.cm-table tr         { display: table-row; border: 0; border-radius: 0; margin: 0; padding: 0; }
+  .cm-card table.cm-table td         { display: table-cell; padding: 8px 10px;
+                                       border: 1px solid var(--line); border-left: none; border-right: none; }
+  .cm-card table.cm-table td::before { content: none; }
+}

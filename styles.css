@@ -1,16 +1,17 @@
 :root {
   --bg: #1E262E;
+  --heading: #DFC0A2;
   --surface: #2E5266;
-  --text: #C98B52;
+  --text:    #C98B52;
   --mono: 'Arial', monospace;
-  --accent: whitesmoke;
-  --muted: #2E5266;
-  --border: #263C4A;
-  --temp: #DFC0A2;
-  --ocean: #2E5266;
-  --clay: #C98B52;
+  --accent:  whitesmoke;
+  --muted:   #7fa6bf;
+  --border:  #263C4A;
+  --temp:    #DFC0A2;
+  --ocean:   #2E5266;
+  --clay:    #C98B52;
   --ocean-soft: #263C4A;
-  --clay-soft: #DFC0A2;
+  --clay-soft:  #DFC0A2;
 }
 
 body {
@@ -24,12 +25,14 @@ body {
 
 body.light-mode {
   --temp:    #F5F5F2;
+  --heading: #DFC0A2; 
   --bg:      #F5F5F2;
   --text:    #1E262E;
   --accent:  #1E262E;
   --surface: #DFC0A2;
   --border:  #C98B52;
   --muted:   #2E5266;
+  --clay:    #8A5A2B; 
 }
 
 body.light-mode #top-nav button {
@@ -72,7 +75,7 @@ nav a.active {
 }
 
 nav a:visited {
-  color: var(--clay);
+  color: var(--muted);
 }
 
 .accordion-header {
@@ -127,7 +130,7 @@ main {
 }
 
 #top-nav button:hover {
-  color: var(--clay);
+  color: var(--clay-soft);
 }
 
 #btn-toggle {
@@ -151,7 +154,7 @@ h1 {
 @keyframes blink { 0%, 100% { border-color: var(--text); } 50% { border-color: transparent; } }
 
 h2, h3 {
-  color: var(--temp);
+  color: var(--heading);
   font-family: var(--mono);
   text-align: left;
 }
@@ -178,6 +181,7 @@ table {
 }
 
 th, td {
+  color: var(--accent);
   padding: 8px 10px;
   border: 2px solid var(--border);
   vertical-align: top;
@@ -185,7 +189,7 @@ th, td {
 
 th {
   background: var(--surface);
-  color: var(--muted);
+  color: var(--accent);
   text-align: center;
 }
 
@@ -265,9 +269,9 @@ a:visited { color: var(--ocean); }
   --line: var(--ocean);
   --wash: var(--ocean-soft);
   --accent2: var(--clay);
-  --accent2-soft: var(--clay-soft);
+  --accent2-soft: #1b2630;
   --gold: var(--clay);
-  --gold-soft: var(--clay-soft);
+  --gold-soft: var(#1b2630);
   font-family: 'Manrope', system-ui, -apple-system, sans-serif;
   color: var(--ink);
   background: var(--paper);
@@ -287,7 +291,7 @@ body.light-mode .cm-card {
   --wash: #f3f6f9;
   --accent2: #2E5266;
   --accent2-soft: #e3ecf0;
-  --gold: #C98B52;
+  --gold: #8A5A2B;
   --gold-soft: #f6ecde;
   box-shadow: 0 1px 2px rgba(22,41,58,0.04), 0 8px 24px rgba(22,41,58,0.06);
 }
